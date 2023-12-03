@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HotelBooking.Models.TblKhachSan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <link rel="stylesheet" href="~/css/Quanlyphong/StyleSheet.css" />
+</head>
+<h1>Quan lý phòng cho thuê </h1>
+
+<p class="them">
+    <button type="button"><a asp-action="Create">Thêm Khách Sạn</a></button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên Khách Sạn
+            </th>
+            <th>
+               Địa Chỉ
+            </th>
+            <th>
+                Ảnh
+            </th>
+            <th>
+                Đánh Giá
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.STenkhachsan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDiachi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SAnhkhachsan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDanhgia)
+                </td>              
+                <td>
+                    <button type="button" id="detail"><a asp-action="Details" asp-route-id="@item.IdKhachsan">Quản lý phòng</a></button>
+                    <button type="button" id="edit"><a asp-action="Edit" asp-route-id="@item.IdKhachsan">Sửa</a></button>
+                    <button type="button" id="delete"><a asp-action="Delete" asp-route-id="@item.IdKhachsan">Xóa</a></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

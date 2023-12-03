@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HotelBooking.Models.TblPhong>
+@{
+    ViewData["Title"] = "Details";
+}
+<head>
+    <link rel="stylesheet" href="~/css/Quanlyphong/StyleSheet.css" />
+</head>
+<h1>Danh Sach Cac Phong: @ViewBag.tenkhachsan</h1>
+
+<p class="them">
+    <button type="button"><a asp-action="Create">Thêm Phòng Mới</a></button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Kiểu Phòng 
+            </th>
+            <th>
+                Giá Phòng 
+            </th>            
+            <th>
+                Mô Tả 
+            </th>
+            <th>
+                Tiện Nghi 
+            </th>
+            <th>
+                Ảnh
+            </th>
+            <th>
+                Trạng Thái
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SKieuPhong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FGiaphong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SMotaphong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.STiennghi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SAnhphong)
+            </td>
+             <td>
+                @if (item.SPhongcontrong == 0)
+            {
+                        <p>có người</p> @* <input type="checkbox" disabled checked /> *@ <!-- Phòng không trống -->
+            }
+            else
+            {
+                        <p>trống</p> @* <input type="checkbox" disabled /> *@ <!-- Phòng trống -->
+            }
+            </td>
+            <td>
+                 
+                @* <a asp-controller="TblPhongs" asp-action="Details" asp-route-id="@item.IdPhong">Details</a> | *@
+               
+                    @* <button type="button" id="detail"><a asp-action="Details" asp-route-id="@item.IdKhachsan">Quản lý phòng</a></button> *@
+                    <button type="button" id="edit"><a asp-controller="TblPhongs" asp-action="Edit" asp-route-id="@item.IdPhong">Cập nhập</a></button>
+                    <button type="button" id="delete"> <a asp-controller="TblPhongs" asp-action="Delete" asp-route-id="@item.IdPhong">Xóa</a></button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

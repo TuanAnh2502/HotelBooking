@@ -34,6 +34,7 @@ namespace HotelBooking.Controllers
 
             var tblKhachSan = await _context.TblKhachSans
                 .FirstOrDefaultAsync(m => m.IdKhachsan == id);
+            
             if (tblKhachSan == null)
             {
                 return NotFound();

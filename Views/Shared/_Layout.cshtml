@@ -12,17 +12,16 @@
     <header>
         <div style="background-color:white">
             <div class="head">
-                <div class="logo"><img class="image" src="/img/image-1.png" /></div>
+                <div class="logo"><a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img class="image" src="/img/image-1.png" /></a></div>
                 <div class="webname">
                     <p class="BOOKING-VI-t-NAM-thu">
-                        <span class="span">BOOKING VIỆT NAM<br /></span>
-                        <span class="text-wrapper-6"><br /></span>
+                        <span class="span"><h1>BOOKING VIỆT NAM</h1></span>
                         <span class="text-wrapper-7">Thuê phòng mọi nơi bạn muốn</span>
                     </p>
                 </div>
                 <div class="weblienhe"><p class="li-n-h-h-tr">Liên hệ hỗ trợ 24/77<br /><br />Hotline:0320303303 <br />Email : 123@gmail.comcom</p></div>
                 <div class="user">
-                    <div class="ellipse"></div>
+                    <div class="ellipse"><a class="navbar-brand" asp-area="" asp-controller="TblUsers" asp-action="Details" asp-route-id="1"><img src="/img/Ellipse-1.png" /></a></div>
                     <div class="text_username">Nguyễn Tuấn Anh</div>
                 </div>
                 <div class="clear"></div>
@@ -32,7 +31,7 @@
         </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HotelBooking</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BOOKING VIỆT NAM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,31 +42,50 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Liên Hệ</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Giới Thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TblKhachSans" asp-action="Index">Đặt Phòng</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Lưu Trữ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TblDatphongs" asp-action="Index">Đặt Phòng</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TblKhachSans" asp-action="Index">Quản Lý Phòng</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Quanlykhachsan" asp-action="Index">Quản Lý Phòng</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container" style="background-color:white">
+    <div id="content" class="container" style="background-color:white">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - HotelBooking - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h2>About Us</h2>
+                    <p>Your company description goes here.</p>
+                </div>
+                <div class="footer-section links">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact-form">
+                    <h2>Contact Us</h2>
+                    <form action="#">
+                        <!-- Add your contact form fields here -->
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

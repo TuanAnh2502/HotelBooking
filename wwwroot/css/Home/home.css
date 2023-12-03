@@ -2,6 +2,7 @@
     background-color:white;
     margin-top:10px;
     display:block;
+    margin-bottom:10px;
 }
 .clear {
     clear: both;
@@ -157,8 +158,8 @@
 }
 .noidung {
     display: flex;
-    float: left;
-    width:100%;
+    flex-wrap: wrap;
+    width: 100%;
 }
 .khachsan {
     width: 25%;
