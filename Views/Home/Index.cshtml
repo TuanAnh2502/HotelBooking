@@ -2,65 +2,106 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<head>
+    <link rel="stylesheet" href="~/css/Home/home.css" />
+</head>
+<div class="content">
+    <div class="Home_banner">
+        <img src="/img/image-2.png" />
+        <div class="timkiem">
+            <input type="text" class="timkiem_input" id="timkiem_diachi" name="address" placeholder="Bạn muốn đến đâu" />
+            <input type="date" class="timkiem_input" id="timkiem_date_nhan" name="nhanphong" placeholder="Ngày nhận">
+            <input type="date" class="timkiem_input" id="timkiem_date_tra" name="traphong" placeholder="Ngày tra">
+            <input type="number" class="timkiem_input" id="timkiem_number" name="number" placeholder="Số Người" />
+            <button type="submit">Tìm Kiếm</button>
+        </div>
+    </div>
+    <div class="Home_thinhhanh">
+        <div class="diemdendangthinhhanh">
+            <h2>Điểm đến đang thịnh hành</h2>
+            <h4>Các lựa chọn phổ biến nhất từ du khách đến Việt Nam</h4>
+        </div>
+        <div class="Home_thinhhanh_content">
+            <div class="left">
+                <div class="left_content">
+                    <p class="text-wrapper">TP.HỒ CHÍ MINH</p>
+                </div>
+                <div class="left_content">
+                    <p class="text-wrapper">TP.HÀ NỘI</p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="right_content">
+                    <p class="text-wrapper">TP.HẠ LONG</p>
+                </div>
+                <div class="right_content">
+                    <p class="text-wrapper">TP.NHA TRANG</p>
+                </div>
+                <div class="right_content">
+                    <p class="text-wrapper">TP.HUẾ</p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="Home_hanoi">
+            <h2>Khách Sạn Hàng Đầu Tại Hà Nội</h2>        
+        <div class="noidung">
+            @foreach (var item in Model)
+            {
+                <div class="khachsan">
+                    <div class="khachsan_content">
+                        <div class="anh">
+                            <a asp-action="Details" asp-route-id="@item.IdKhachsan"><img class="khachsan_image" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                        </div>
+                        <div class="ten">
+                            @Html.DisplayFor(modelItem => item.SDiachi)
+                        </div>
+                        <div class="dichi">
+                            @Html.DisplayNameFor(model => model.SDiachi)
+                        </div>
+                        <div class="gia">
+                            Giá từ: 1.300.000 VND
+                        </div>
+                        <div class="datphong">
+                            <a asp-action="Details" asp-route-id="@item.IdKhachsan"><button type="button">Đặt phòng ngay</button></a>
+                        </div>
+                    </div>
+                </div>
+            }
+           
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="Home_HCM">
+            <h2>Khách Sạn Hàng Đầu Tại TP.Hồ Chí Minh</h2>
+        <div class="noidung">
+            @foreach (var item in Model)
+            {
+                <div class="khachsan">
+                    <div class="khachsan_content">
+                        <div class="anh">
+                            <a asp-action="Details" asp-route-id="@item.IdKhachsan"><img class="khachsan_image" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                        </div>
+                        <div class="ten">
+                            @Html.DisplayFor(modelItem => item.SDiachi)
+                        </div>
+                        <div class="dichi">
+                            @Html.DisplayNameFor(model => model.SDiachi)
+                        </div>
+                        <div class="gia">
+                            Giá từ: 1.300.000 VND
+                        </div>
+                        <div class="datphong">
+                            <a asp-action="Details" asp-route-id="@item.IdKhachsan"><button type="button">Đặt phòng ngay</button></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+         <div class="clear"></div>
+    </div>
 </div>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.STenkhachsan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SDiachi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SMotakhachsan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SAnhkhachsan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SDanhgia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdUser)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.STenkhachsan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SDiachi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SMotakhachsan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SAnhkhachsan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SDanhgia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdUser)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdKhachsan">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdKhachsan">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdKhachsan">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div>
+    heet
+</div>
