@@ -1,0 +1,53 @@
+﻿@model HotelBooking.Models.TblUser
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TblUser</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SEmail" class="control-label"></label>
+                <input asp-for="SEmail" class="form-control" />
+                <span asp-validation-for="SEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SMatkhau" class="control-label"></label>
+                <input asp-for="SMatkhau" class="form-control" />
+                <span asp-validation-for="SMatkhau" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="STendaydu" class="control-label"></label>
+                <input asp-for="STendaydu" class="form-control" />
+                <span asp-validation-for="STendaydu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SSdt" class="control-label"></label>
+                <input asp-for="SSdt" class="form-control" />
+                <span asp-validation-for="SSdt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SLoaiuser" class="control-label"></label>
+                <input asp-for="SLoaiuser" class="form-control" />
+                <span asp-validation-for="SLoaiuser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

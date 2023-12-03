@@ -1,0 +1,42 @@
+﻿@model HotelBooking.Models.TblDanhGium
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TblDanhGium</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ISosaodanhgia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ISosaodanhgia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SNoidung)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SNoidung)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdKhachhangNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdKhachhangNavigation.IdUser)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdKhachsanNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdKhachsanNavigation.IdKhachsan)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdDanhgia">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

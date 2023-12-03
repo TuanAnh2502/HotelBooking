@@ -1,0 +1,54 @@
+﻿@model HotelBooking.Models.TblKhachSan
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TblKhachSan</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.STenkhachsan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.STenkhachsan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SDiachi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SDiachi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SMotakhachsan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SMotakhachsan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SAnhkhachsan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SAnhkhachsan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SDanhgia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SDanhgia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdUser)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdKhachsan">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

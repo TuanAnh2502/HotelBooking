@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HotelBooking.Models.TblDanhGium>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ISosaodanhgia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SNoidung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdKhachhangNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdKhachsanNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISosaodanhgia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SNoidung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdKhachhangNavigation.IdUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdKhachsanNavigation.IdKhachsan)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDanhgia">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDanhgia">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDanhgia">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
