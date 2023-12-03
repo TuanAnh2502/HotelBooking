@@ -32,6 +32,9 @@
             display: flex; /* Sử dụng display flex để xếp sát nhau */
             align-items: center; /* Căn giữa các phần tử theo chiều dọc */
         }
+            .content .Home_banner .timkiem:hover {
+                border:1px solid #e1e1e1;
+            }
             .content .Home_banner .timkiem input {
                 border: 0px;
                 background-color: rgba(255, 255, 255, 0.6); /* Nền mờ để nội dung đọc được */
@@ -39,8 +42,61 @@
             .content .Home_banner .timkiem button {
                 background-color: rgba(255, 255, 255, 0.6); /* Nền mờ để nội dung đọc được */
             }
-        
-    .content .Home_thinhhanh{
+
+
+.content .Home_thinhhanh {
+    display: block;
+}
+
+    .content .Home_thinhhanh .diemdendangthinhhanh {
+        display: block;
+    }
+.Home_thinhhanh_content {
+    display: flex;
+    width: 100%;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 66%;
+    padding: 0px 20px 0px 0px;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    width: 34%;
+    padding:0px 0px 0px 20px;
+}
+
+.left_content,
+.right_content {
+    padding: 0px 0px 40px 0px;
+    position: relative;
+}
+    .left_content img:hover,
+    .right_content img:hover {
+        filter: brightness(1.2); /* Giá trị > 1 làm cho ảnh sáng hơn */
+    }
+
+    .left_content img,
+    .right_content img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+.text-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color:black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+    /*.content .Home_thinhhanh{
         display:block;
     }
         .content .Home_thinhhanh .diemdendangthinhhanh {
@@ -50,26 +106,46 @@
             display:flex;
             width: 100%;
         }
-.left {
-    float: left;
-    display: block;
-    width: 60%;
-    margin: 0;
-    padding-right: 10px;
-}
-.right {
-    float: left;
-    display: block;
-    width: 40%;
-    margin: 0;
-    padding-left: 10px;
-}
-.left_content {
-    margin:10px 0px 10px 0px;
-}
-.right_content {
-    margin: 10px 0px 10px 0px;
-}
+            .Home_thinhhanh_content img {
+                width: 100%;*/ /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng của thẻ div */
+                /*height: auto;*/ /* Để giữ tỷ lệ khung hình */
+                /*display: block;*/ /* Loại bỏ khoảng trắng dư thừa dưới thẻ img */
+            /*}
+            .Home_thinhhanh_content .text-wrapper {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;*/ /* Màu chữ */
+                /*font-size: 18px;*/ /* Kích thước chữ */
+                /*font-weight: bold;*/ /* Độ đậm chữ */
+            /*}
+            .left {
+                float: left;
+                display: block;
+                width: 60%;
+                margin: 0;
+                padding-right: 10px;
+            }
+            .right {
+                float: left;
+                display: block;
+                width: 40%;
+                margin: 0;
+                padding-left: 10px;
+            }
+            .left_content {
+                position:relative;
+                width:100%;
+                margin:10px 0px 10px 0px;
+            }
+            .right_content {
+                width: 100%;
+                margin: 10px 0px 10px 0px;
+            }*/
+
+
+
 .Home_hanoi {
     margin-top: 30px;
     display: block;
