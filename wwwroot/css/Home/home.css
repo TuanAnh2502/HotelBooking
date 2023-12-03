@@ -2,6 +2,7 @@
     background-color:white;
     margin-top:10px;
     display:block;
+    margin-bottom:10px;
 }
 .clear {
     clear: both;
@@ -157,7 +158,10 @@
 }
 .noidung {
     display: flex;
+<<<<<<< HEAD
     float: left;
+=======
+>>>>>>> 39a6982b5815e95d4defba2e89bbbbcccfc0915f
     flex-wrap: wrap;
     width: 100%;
 }

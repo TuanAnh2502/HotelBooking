@@ -1,0 +1,57 @@
+﻿@model HotelBooking.Models.TblKhachSan
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TblKhachSan</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.STenkhachsan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.STenkhachsan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SDiachi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SDiachi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SMotakhachsan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SMotakhachsan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SAnhkhachsan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SAnhkhachsan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SDanhgia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SDanhgia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdUserNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdUserNavigation.IdUser)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdKhachsan" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

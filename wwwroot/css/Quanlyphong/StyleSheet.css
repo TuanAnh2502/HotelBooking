@@ -1,0 +1,34 @@
+﻿#delete a {
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: 18px;
+}
+#detail a {
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: 18px;
+}
+#edit a {
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: 18px;
+}
+.them a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+button{
+    margin:20px;
+    color:black;
+}
+#delete{
+    background-color:#bf3434;
+}
+#detail {
+        background-color:#256972;
+    }
+#edit {
+        background-color: #815922;
+    }
