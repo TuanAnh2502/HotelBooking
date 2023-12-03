@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HotelBooking</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/Login/style-responsive.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/1f9ed28280.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/HotelBooking.styles.css" asp-append-version="true" />
 </head>
 <body style="background-color:#BFB48D">
@@ -23,7 +26,16 @@
                 <div class="weblienhe"><p class="li-n-h-h-tr">Liên hệ hỗ trợ 24/77<br /><br />Hotline:0320303303 <br />Email : 123@gmail.comcom</p></div>
                 <div class="user">
                     <div class="ellipse"></div>
-                    <div class="text_username">Nguyễn Tuấn Anh</div>
+                    <form action="/Login/Index" method="get">
+                        <button type="submit">Đăng nhập</button>
+                    </form>
+                    @if (ViewBag.UserId != null && ViewBag.UserName != null)
+                    {
+                        <div class="text_username">
+                            <i class="fa-solid fa-user"></i>
+                            @ViewBag.UserName
+                        </div>
+                    }
                 </div>
                 <div class="clear"></div>
             </div>

@@ -158,7 +158,8 @@
 .noidung {
     display: flex;
     float: left;
-    width:100%;
+    flex-wrap: wrap;
+    width: 100%;
 }
 .khachsan {
     width: 25%;

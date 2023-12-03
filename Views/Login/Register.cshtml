@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Đăng ký";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="container">
+
+    <form class="form-signin form-signup" method="post" asp-controller="Login" asp-area="User" asp-action="Singup">
+        <h2 class="form-signin-heading">Đăng Ký</h2>
+
+        <div class="alert alert-danger form-signup-alert hide"></div>
+        <div class="login-wrap">
+            <input type="text" class="form-control" name="Name" placeholder="Nhập Tên" autofocus>
+            <input type="text" class="form-control" name="Email" placeholder="Nhập Email" autofocus>
+            <input type="text" class="form-control" name="Phone" placeholder="Nhập Số điện thoại" autofocus>
+            <input type="password" class="form-control" name="Password" placeholder="Nhập mật khẩu">
+            <input type="password" class="form-control" name="Password_again" placeholder="Nhập lại mật khẩu">
+            <label class="checkbox">
+                <span>
+                    <input type="checkbox" id="show-password" onclick="togglePassword()"> Hiện mật khẩu
+                </span>
+                <span class="pull-right">
+                    <a data-toggle="modal" href="#myModal">Quên mật khẩu</a>
+
+                </span>
+            </label>
+            <button class="btn btn-lg btn-login btn-block" type="submit">Đăng Ký</button>
+
+            <div class="registration">
+                Đăng nhập ngay bây giờ
+                <a asp-area="User" asp-controller="Login" asp-action="Index">Đăng nhập</a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+

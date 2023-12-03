@@ -1,4 +1,5 @@
-using HotelBooking.Models;
+﻿using HotelBooking.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -18,9 +19,24 @@ namespace HotelBooking.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
+            if (TempData.TryGetValue("UserId", out var userId) && TempData.TryGetValue("UserName", out var userName))
+            {
+                ViewBag.UserId = userId;
+                ViewBag.UserName = userName;
+            }
+            ViewBag.IsLoggedIn = User.Identity.IsAuthenticated;
             return View(await _context.TblKhachSans.ToListAsync());
         }
         // GET: TblKhachSans/Details/5
+        [Route("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            // Hủy bỏ các thông tin đăng nhập của người dùng
+            await HttpContext.SignOutAsync();
+
+            // Điều hướng về trang chủ hoặc trang đăng nhập
+            return RedirectToAction(nameof(Index), "Home");
+        }
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

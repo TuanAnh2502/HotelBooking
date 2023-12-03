@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="container">
+    <form class="form-signin" method="post" asp-controller="Login" asp-area="User" asp-action="Singin">
+        @* @if(ViewBag.LoginStatus != null && ViewBag.LoginStatus == 0){
+        <p style="display: none; color: red;">Tài khoản không đúng</p>
+        } *@
+        <h2 class="form-signin-heading">Đăng nhập ngay bây giờ</h2>
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                }
+            </div>
+        </div>
+        <div class="login-wrap">
+            <input type="text" class="form-control" name="Email" placeholder="Nhập Email" autofocus>
+            <input type="password" id="password" class="form-control" name="Password" placeholder="Nhập mật khẩu">
+            <label class="checkbox">
+                <span>
+                    <input type="checkbox" id="show-password" onclick="togglePassword()"> Hiện mật khẩu
+                </span>
+                <span class="pull-right">
+                    <a data-toggle="modal" href="#myModal">Quên mật khẩu</a>
+                </span>
+            </label>
+            <button class="btn btn-lg btn-login btn-block" type="submit">Đăng nhập</button>
+
+            <div class="registration">
+                Bạn có tài khoản chưa
+                <a asp-area="User" asp-controller="Login" asp-action="Register">Tạo tài khoản</a>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+    
