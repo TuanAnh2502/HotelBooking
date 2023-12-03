@@ -14,7 +14,7 @@ namespace HotelBooking.Controllers
     }
 
     // GET: TblKhachSans
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int? id)
     {
         return View(await _context.TblKhachSans.ToListAsync());
     }
