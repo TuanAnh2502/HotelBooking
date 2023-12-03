@@ -3,57 +3,88 @@
 @{
     ViewData["Title"] = "Index";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/Datphong/styles.css" />
+</head>
+<body>
+    <div class="title">
+    <h1>Index</h1>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    </div>
+<div class="box">
+    <div class="search-bar">
+        <div class="label-an"><input type="text" class="diadiem" placeholder="Bạn muốn đi đâu"></input></div>
+        <div class="label-an"><input type="text" class="ngaycheckin" placeholder="Ngày check-in"></div>
+        <div class="label-an"><input type="text" class="ngaycheckout" placeholder="Ngày check-out"></div>
+        <div class="label-an"><input type="text" class="songuoi" placeholder="Số người"></div>
+        <div class="timkiem"><button class="btn-timkiem">Tìm kiếm</button></div>
+        </div>
+    
+    <div class="container">
+        <div class="column1">
+                <h2>Những thiết yếu cần có</h2><
+                <hr style="border-top: 2px solid #000;">
 
-<h1>Index</h1>
+                <div>
+                    <p><b>Xếp hạng chỗ nghỉ</b></p>
+                    <form>
+                    <div class="rating">
+                        <input type="radio" class="star5" name="rating" value="5"> 5 sao<br>
+                        <input type="radio" class="star4" name="rating" value="4"> 4 sao<br>
+                        <input type="radio" class="star3" name="rating" value="3"> 3 sao<br>
+                        
+                        <input type="radio" class="star2" name="rating" value="2"> 2 sao <br>
+                       
+                        <input type="radio" class="star1" name="rating" value="1"> 1 sao <br>
+                    
+                    </div>
+                    </form>
+                    <hr style="border-top: 2px solid #000;">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DNgaycheckin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DNgaycheckout)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SHinhthucthanhtoan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPhongNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdUserNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNgaycheckin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNgaycheckout)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SHinhthucthanhtoan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPhongNavigation.IdPhong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUserNavigation.IdUser)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdMadatphong">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdMadatphong">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdMadatphong">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    <div>
+                        <p><b>Khu vực</b></p><br/>
+                        <p>Thành phố: Hà Nội</p>
+                    <form class="district-form">
+                        <label><input type="checkbox" name="district" value="Ba Đình"> Ba Đình</label><br>
+                        <label><input type="checkbox" name="district" value="Hoàn Kiếm"> Hoàn Kiếm</label><br>
+                        <label><input type="checkbox" name="district" value="Tây Hồ"> Tây Hồ</label><br>
+                        <!-- Thêm các checkbox khác tương tự ở đây -->
+                    </form>
+
+                    </div>
+                </div>
+            </div>
+        <div class="column2">
+            <div>
+                <h2>Kết quả tìm kiếm:</h2>
+                    <hr style="border-top: 2px solid #000;">
+            </div>
+            <div>
+                    @{
+                        int i = 0;
+                        @foreach (var hotel in ViewBag.HotelsInHanoi)
+                        {
+                            <!-- Hiển thị các thông tin khác của khách sạn -->
+                            <div class="hottel-@i">
+                                <div class="text-wrapper-10">@hotel.STenkhachsan</div>
+                                <div class="text-wrapper-11">@hotel.SDiachi</div>
+                                <div class="text-wrapper-12">Giá từ: 1.300.000 VND</div>
+                                <div class="overlap-group-3">
+                                    <div class="rectangle"></div>
+                                    <div class="text-wrapper-13">Đặt phòng ngay</div>
+                                </div>
+                                <img class="image" src="@hotel.SAnhkhachsan" />
+                            </div>
+                            i++;
+                        }
+                    }
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

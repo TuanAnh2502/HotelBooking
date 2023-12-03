@@ -21,8 +21,34 @@ namespace HotelBooking.Controllers
         // GET: TblDatphongs
         public async Task<IActionResult> Index()
         {
-            var hotelBookingContext = _context.TblDatphongs.Include(t => t.IdPhongNavigation).Include(t => t.IdUserNavigation);
-            return View(await hotelBookingContext.ToListAsync());
+            var hotels5sao = await _context.TblKhachSans
+                                    .Where(h => h.SDanhgia == 5)
+                                    .Include(h => h.IdUserNavigation)
+                                    .ToListAsync();
+
+            var hotels4sao = await _context.TblKhachSans
+                                            .Where(h => h.SDanhgia == 4)
+                                            .Include(h => h.IdUserNavigation)
+                                            .ToListAsync();
+            var hotels3sao = await _context.TblKhachSans
+                                            .Where(h => h.SDanhgia == 3)
+                                            .Include(h => h.IdUserNavigation)
+                                            .ToListAsync();
+            var hotels2sao = await _context.TblKhachSans
+                                            .Where(h => h.SDanhgia == 2)
+                                            .Include(h => h.IdUserNavigation)
+                                            .ToListAsync();
+            var hotels1sao = await _context.TblKhachSans
+                                            .Where(h => h.SDanhgia == 1)
+                                            .Include(h => h.IdUserNavigation)
+                                            .ToListAsync();
+            ViewBag.Hotels5sao = hotels5sao;
+            ViewBag.Hotels4sao = hotels4sao;
+            ViewBag.Hotels3sao = hotels3sao;
+            ViewBag.Hotels2sao = hotels2sao;
+            ViewBag.Hotels1sao = hotels1sao;
+
+            return View();
         }
 
         // GET: TblDatphongs/Details/5
