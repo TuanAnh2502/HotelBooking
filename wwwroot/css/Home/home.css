@@ -1,1 +1,111 @@
-﻿
+﻿.content{
+    background-color:white;
+    margin-top:10px;
+    display:block;
+}
+.clear {
+    clear: both;
+}
+    .content .Home_banner {
+        display: flex;
+        width: auto;
+        height: auto;
+        /*background-image: url(/img/image-2.png);*/
+        justify-content: center;
+        align-content: center;
+        /*background-size: cover;*/ /* Hiển thị ảnh nền theo tỷ lệ và che đè toàn bộ phần tử */
+        /*background-position: center;*/ /* Căn giữa ảnh nền */
+        /*min-height: 100vh;*/ /* Thiết lập độ cao tối thiểu bằng chiều cao của viewport */
+    }
+        .content .Home_banner img {
+            width: 100%; /* Đảm bảo ảnh nền kích thước 100% chiều rộng của .Home_banner */
+        }
+        .content .Home_banner .timkiem {
+            /* display: flex;
+            margin: auto;*/
+            position: absolute; /* Đặt vị trí tuyệt đối cho .timkiem */
+            top: 270px; /* Đặt phía trên giữa */
+            left: 50%; /* Đặt phía trái giữa */
+            transform: translate(-50%, -50%); /* Dịch chuyển về trung tâm */
+
+            border-radius: 10px; /* Bo góc cho .timkiem */
+            display: flex; /* Sử dụng display flex để xếp sát nhau */
+            align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+        }
+            .content .Home_banner .timkiem input {
+                border: 0px;
+                background-color: rgba(255, 255, 255, 0.6); /* Nền mờ để nội dung đọc được */
+            }
+            .content .Home_banner .timkiem button {
+                background-color: rgba(255, 255, 255, 0.6); /* Nền mờ để nội dung đọc được */
+            }
+        
+    .content .Home_thinhhanh{
+        display:block;
+    }
+        .content .Home_thinhhanh .diemdendangthinhhanh {
+            display: block;
+        }
+        .Home_thinhhanh_content {
+            display:flex;
+            width: 100%;
+        }
+.left {
+    float: left;
+    display: block;
+    width: 60%;
+    margin: 0;
+    padding-right: 10px;
+}
+.right {
+    float: left;
+    display: block;
+    width: 40%;
+    margin: 0;
+    padding-left: 10px;
+}
+.left_content {
+    margin:10px 0px 10px 0px;
+}
+.right_content {
+    margin: 10px 0px 10px 0px;
+}
+.Home_hanoi {
+    margin-top: 30px;
+    display: block;
+}
+
+.Home_HCM {
+    margin-top: 30px;
+    display: block;
+}
+.noidung {
+    display: flex;
+    float: left;
+    width:100%;
+}
+.khachsan {
+    width: 25%;
+    margin: 0;
+    display: block;
+    align-content: center;
+    padding: 10px;
+    float: left;    
+}
+    .khachsan:hover {
+        padding:0px 5px 0px 5px;
+    }
+    .khachsan_content {
+        border: 1px solid;
+        padding: 5px;
+    }
+    .khachsan_content img {
+        width: 100%;
+    }
+    .khachsan_content button {
+        width: 100%;
+    }
+        
+
+
+            

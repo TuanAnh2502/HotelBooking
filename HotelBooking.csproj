@@ -26,4 +26,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Lienhe\" />
+    <Folder Include="wwwroot\css\Luutru\" />
+    <Folder Include="wwwroot\css\Datphong\" />
+    <Folder Include="wwwroot\css\Chithietphong\" />
+    <Folder Include="wwwroot\css\Quanlyphong\" />
+  </ItemGroup>
+
 </Project>
