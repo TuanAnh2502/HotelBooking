@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using HotelBooking.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelBooking.Controllers
@@ -14,15 +15,28 @@ namespace HotelBooking.Controllers
             _logger = logger;
             _context = context;
         }
-        public async Task<IActionResult> Index(int? id)
+
+/*        [Route("/Chitietphong")]
+*/        public async Task<IActionResult> Index(int? id)
         {
             string kieuPhong = HttpContext.Request.Query["kieuphong"];
-
+            ViewBag.idks = id;
             // Gán giá trị vào ViewBag để sử dụng trong view
             ViewBag.kieu = kieuPhong;
-            var hotelBookingContext = _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t=> t.IdKhachsan== id);
-            return View(await hotelBookingContext.ToListAsync());
+            
+            var tblPhongs = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t=> t.IdKhachsan==id).ToListAsync();
+            var tblkieu = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t => t.IdKhachsan == id&& t.SKieuPhong==kieuPhong).ToListAsync();
+            if (kieuPhong == null)
+            {
+                return View(tblPhongs);
+            }
+            else
+            {
+                return View(tblkieu);
+            }
+            return View(tblPhongs);
         }
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

@@ -5,44 +5,44 @@
 }
 <head>
     <link rel="stylesheet" href="/css/Datphong/styles.css" />
+    <script src="~/js/locsao.js"></script>
 </head>
     
 <div class="box">
     <div class="search-bar">
         <div class="label-an"><input type="text" class="diadiem" placeholder="Bạn muốn đi đâu"></input></div>
-        <div class="label-an"><input type="text" class="ngaycheckin" placeholder="Ngày check-in"></div>
-        <div class="label-an"><input type="text" class="ngaycheckout" placeholder="Ngày check-out"></div>
-        <div class="label-an"><input type="text" class="songuoi" placeholder="Số người"></div>
+        <div class="label-an"><input type="date" class="ngaycheckin" placeholder="Ngày check-in"></div>
+        <div class="label-an"><input type="date" class="ngaycheckout" placeholder="Ngày check-out"></div>
+        <div class="label-an"><input type="number" class="songuoi" placeholder="Số người"></div>
         <div class="timkiem"><button class="btn-timkiem">Tìm kiếm</button></div>
         </div>
     
     <div class="container2">
         <div class="column1">
-                <h2>Những thiết yếu cần có</h2>
+                <h3>Những thiết yếu cần có</h3>
                 <hr style="border-top: 2px solid #000;">
 
                 <div>
                     <p><b>Xếp hạng chỗ nghỉ</b></p>
                     
-                    <div class="rating">
+                    <form id="formsao" method="get" asp-controller="TblDatphongs" asp-action="Index">
                         <input type="radio" class="star5" name="rating" value="5"> 5 sao<br>
                         <input type="radio" class="star4" name="rating" value="4"> 4 sao<br>
                         <input type="radio" class="star3" name="rating" value="3"> 3 sao<br>
                         <input type="radio" class="star2" name="rating" value="2"> 2 sao <br>
                         <input type="radio" class="star1" name="rating" value="1"> 1 sao <br>
+                        <hr style="border-top: 2px solid #000;">
+                        <input class="btn-locsao" type="submit" value="Lọc" />
+                    </form>
                     
-                    </div>
-                    
-                    <hr style="border-top: 2px solid #000;">
-                    <button class="btn-locsao">Lọc</button>
                 </div>
             </div>
         <div class="column2">
             <div>
-                <h2>Kết quả tìm kiếm:</h2>
+                <h3>Kết quả tìm kiếm:</h3>
                     <hr style="border-top: 2px solid #000;">
             </div>
-            <div>
+            <div id="danhsachksan">
                 @foreach (var item in Model)
                 {
                     <div class="product">
@@ -50,25 +50,26 @@
                             <a asp-area="" asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="image-khachsan" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
                         </div>
                         <div class="thongtin-khachsan">
-                            <div class="tenkhachsan"><h4>@Html.DisplayFor(modelItem => item.STenkhachsan)</h4></div>
+                            <div class="tenkhachsan"><h5>@Html.DisplayFor(modelItem => item.STenkhachsan)</h5></div>
+                            <p style="font-size:70%">Đánh giá: @Html.DisplayFor(modelItem => item.SDanhgia)</p>
                             <hr style="border-top: 1px solid #000;width:400px">
-                            <div class="diachi"><h6>@Html.DisplayFor(modelItem => item.SDiachi)</h6></div>
+                            <div class="diachi" style="font-size:80%"><h7>@Html.DisplayFor(modelItem => item.SDiachi)</h7></div>
                             <div class="mota">
-                                <p>@Html.DisplayFor(modelItem => item.SMotakhachsan)</p>
+                                <p style="font-size=70%">@Html.DisplayFor(modelItem => item.SMotakhachsan)</p>
                             </div>
                             <div class="nut">
                             <a asp- asp-controller="" asp-action="Details" asp-route-id="@item.IdKhachsan">
                                 <button class="btn-luuphong">Lưu</button>
                             </a>
-                            <a asp-action="Details" asp-route-id="@item.IdKhachsan">
+                            <a asp-controller ="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan">
                             <button class="btn-datphong">Đặt phòng ngay</button>
                             </a>
                             </div>
                         </div>
                     </div>
                     <hr style="border-top: 2px solid #000;">
-                
-                }        
+
+                }
             </div>
             </div>
         </div>

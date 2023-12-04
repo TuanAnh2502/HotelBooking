@@ -24,4 +24,9 @@ public partial class TblPhong
     public virtual TblKhachSan? IdKhachsanNavigation { get; set; }
 
     public virtual ICollection<TblDatphong> TblDatphongs { get; set; } = new List<TblDatphong>();
+
+    internal object? ToListAsync()
+    {
+        throw new NotImplementedException();
+    }
 }
