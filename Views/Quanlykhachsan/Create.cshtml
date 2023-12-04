@@ -37,15 +37,7 @@
                 <input asp-for="SDanhgia" class="form-control" />
                 <span asp-validation-for="SDanhgia" class="text-danger"></span>
             </div>
-            @if (ViewBag.UserId != null && ViewBag.UserName != null)
-            {
-                <input type="hidden" asp-for="IdUser" value="ViewBag.UserId" />
-                @* <div class="text_username">
-                    <i class="fa-solid fa-user"></i>
-                    @ViewBag.UserName
-                </div> *@
-            }
-            
+                 <input type="hidden" asp-for="IdUser" value="ViewBag.UserId" />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

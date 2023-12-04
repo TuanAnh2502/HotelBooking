@@ -44,7 +44,7 @@ Khách sạn sẽ cung cấp cho khách các phòng có điều hòa, bàn làm 
 
             <div>
                 <p><b>Xếp hạng chỗ nghỉ</b></p>
-                <form method="get" asp-action="">
+                <form method="get" asp-action="Index">
                     <!-- Các ô input cho lọc -->
                     <div class="danhsachfilter">
                         @foreach (var item in Model)
@@ -65,7 +65,7 @@ Khách sạn sẽ cung cấp cho khách các phòng có điều hòa, bàn làm 
             <h2 class="Loc_title">@ViewBag.kieu</h2>
             @foreach (var item in Model)
             {
-                if (item.SKieuPhong ==ViewBag.kieu)
+                if (item.SKieuPhong == ViewBag.kieu)
                     {
                         <div class="phong_daloc">
                             <div class="phong_content">
