@@ -44,7 +44,7 @@ Khách sạn sẽ cung cấp cho khách các phòng có điều hòa, bàn làm 
 
             <div>
                 <p><b>Xếp hạng chỗ nghỉ</b></p>
-                <form method="get" asp-action="">
+                <form method="get" asp-action="Index">
                     <!-- Các ô input cho lọc -->
                     <div class="danhsachfilter">
                         @foreach (var item in Model)
@@ -54,8 +54,7 @@ Khách sạn sẽ cung cấp cho khách các phòng có điều hòa, bàn làm 
                             <br />
                         }
                     </div>
-
-                    <input type="submit" name="loc" id="btn_loc" value="Lọc" />
+                        <input type="submit" name="loc" id="btn_loc" value="Lọc" />
                 </form>
 
             </div>
@@ -65,40 +64,76 @@ Khách sạn sẽ cung cấp cho khách các phòng có điều hòa, bàn làm 
             <h2 class="Loc_title">@ViewBag.kieu</h2>
             @foreach (var item in Model)
             {
-                if (item.SKieuPhong ==ViewBag.kieu)
-                    {
-                        <div class="phong_daloc">
-                            <div class="phong_content">
+                if (item.SKieuPhong == ViewBag.kieu)
+                {
+                    <div class="phong_daloc">
+                        <div class="phong_content">
 
-                                <div class="left_content">
-                                    <div class="anh">
-                                        <a asp-action="Details" asp-route-id="@item.IdPhong">
+                            <div class="left_content">
+                                <div class="anh">
+                                    <a asp-action="Details" asp-route-id="@item.IdPhong">
                                         <img class="phong_image" src="~/img/image-9.png" />
-                                        </a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                                    </a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
                                 </div>
                                 <div class="khachsan_phongloc">
                                     @Html.DisplayFor(modelItem => item.IdKhachsan)
                                 </div>
-                                    <div class="kieuphong_phongloc">
-                                        @Html.DisplayFor(modelItem => item.SKieuPhong)
-                                    </div>
-                                    <div class="tiennghi_phongloc">
-                                        @Html.DisplayFor(modelItem => item.STiennghi)
-                                    </div>
-                                    <div class="mota_phongloc">
-                                        Đánh Giá: @Html.DisplayFor(modelItem => item.SMotaphong)
-                                    </div>
+                                <div class="kieuphong_phongloc">
+                                    @Html.DisplayFor(modelItem => item.SKieuPhong)
                                 </div>
-                                <div class="right_content">
-                                    <div class="datphong">
-                                        <a asp-action="Details" asp-route-id="@item.IdPhong"><button type="button">Đặt phòng ngay</button></a>
-                                    </div>
-
-                                    <div class="giaphong_phongloc">
-                                    @Html.DisplayFor(modelItem => item.FGiaphong)
-                                    </div>
+                                <div class="tiennghi_phongloc">
+                                    @Html.DisplayFor(modelItem => item.STiennghi)
+                                </div>
+                                <div class="mota_phongloc">
+                                    Đánh Giá: @Html.DisplayFor(modelItem => item.SMotaphong)
                                 </div>
                             </div>
+                            <div class="right_content">
+                                <div class="datphong">
+                                    <a asp-action="Details" asp-route-id="@item.IdPhong"><button type="button">Đặt phòng ngay</button></a>
+                                </div>
+
+                                <div class="giaphong_phongloc">
+                                    @Html.DisplayFor(modelItem => item.FGiaphong)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.kieu == "")
+                {
+                    <div class="phong_daloc">
+                        <div class="phong_content">
+
+                            <div class="left_content">
+                                <div class="anh">
+                                    <a asp-action="Details" asp-route-id="@item.IdPhong">
+                                        <img class="phong_image" src="~/img/image-9.png" />
+                                    </a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                                </div>
+                                <div class="khachsan_phongloc">
+                                    @Html.DisplayFor(modelItem => item.IdKhachsan)
+                                </div>
+                                <div class="kieuphong_phongloc">
+                                    @Html.DisplayFor(modelItem => item.SKieuPhong)
+                                </div>
+                                <div class="tiennghi_phongloc">
+                                    @Html.DisplayFor(modelItem => item.STiennghi)
+                                </div>
+                                <div class="mota_phongloc">
+                                    Đánh Giá: @Html.DisplayFor(modelItem => item.SMotaphong)
+                                </div>
+                            </div>
+                            <div class="right_content">
+                                <div class="datphong">
+                                    <a asp-action="Details" asp-route-id="@item.IdPhong"><button type="button">Đặt phòng ngay</button></a>
+                                </div>
+
+                                <div class="giaphong_phongloc">
+                                    @Html.DisplayFor(modelItem => item.FGiaphong)
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 }
             }

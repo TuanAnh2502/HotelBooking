@@ -60,7 +60,7 @@
                             <a asp- asp-controller="" asp-action="Details" asp-route-id="@item.IdKhachsan">
                                 <button class="btn-luuphong">Lưu</button>
                             </a>
-                            <a asp-action="Details" asp-route-id="@item.IdKhachsan">
+                                <a asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan" >
                             <button class="btn-datphong">Đặt phòng ngay</button>
                             </a>
                             </div>
