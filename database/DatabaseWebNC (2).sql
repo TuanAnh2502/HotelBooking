@@ -83,3 +83,4 @@ CREATE TABLE tblDanhGia (
 );
 GO
 
+select *from tblUsers
