@@ -25,7 +25,7 @@
                 <div>
                     <p><b>Xếp hạng chỗ nghỉ</b></p>
                     
-                    <form id="formsao" method="get">
+                    <form id="formsao" method="get" asp-controller="TblDatphongs" asp-action="Index">
                         <input type="radio" class="star5" name="rating" value="5"> 5 sao<br>
                         <input type="radio" class="star4" name="rating" value="4"> 4 sao<br>
                         <input type="radio" class="star3" name="rating" value="3"> 3 sao<br>
@@ -47,7 +47,7 @@
                 {
                     <div class="product">
                         <div class="img-anhks">
-                            <a asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="image-khachsan" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                            <a asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="image-khachsan" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
                         </div>
                         <div class="thongtin-khachsan">
                             <div class="tenkhachsan"><h5>@Html.DisplayFor(modelItem => item.STenkhachsan)</h5></div>
@@ -61,11 +61,7 @@
                             <a asp- asp-controller="" asp-action="Details" asp-route-id="@item.IdKhachsan">
                                 <button class="btn-luuphong">Lưu</button>
                             </a>
-<<<<<<< HEAD
                             <a asp-controller ="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan">
-=======
-                                <a asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan" >
->>>>>>> 715d0b68f5523083cdeb90284c268f623ac20f8e
                             <button class="btn-datphong">Đặt phòng ngay</button>
                             </a>
                             </div>

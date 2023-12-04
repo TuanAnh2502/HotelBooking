@@ -19,15 +19,27 @@ namespace HotelBooking.Controllers
         }
 
         // GET: TblDatphongs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(decimal? rating)
         {
-            
-            var hotelslist = await _context.TblKhachSans
-                                   .Include(h => h.IdUserNavigation)
-                                   .ToListAsync();
-          
+            if (rating.HasValue)
+            {
+                decimal lowerBound = rating ?? 0; // Giá trị rating hoặc 0 nếu rating không có giá trị
+                decimal upperBound = rating.HasValue ? rating.Value + 1 : 0; // Giá trị rating + 1 hoặc 0 nếu rating không có giá trị
 
-            return View(hotelslist);
+                var hotelslist = await _context.TblKhachSans
+                    .Include(h => h.IdUserNavigation)
+                    .Where(h => h.SDanhgia >= lowerBound && h.SDanhgia < upperBound)
+                    .ToListAsync();
+
+                return View(hotelslist);
+            }
+            else
+            {
+                var hotelslist = await _context.TblKhachSans
+                                       .Include(h => h.IdUserNavigation)
+                                       .ToListAsync();
+                return View(hotelslist);
+            }
         }
 
         // GET: TblDatphongs/Details/5
