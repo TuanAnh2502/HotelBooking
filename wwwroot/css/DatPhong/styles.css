@@ -1,23 +1,22 @@
 ﻿.box {
     width: 100%;
-    top: 0;
+    top: 10px;
     left: 0;
     background-color: #ffffff;
     align-content: center;
+    justify-content:center;
     margin: 0 auto;
+    position:relative;
 }
-.title {
-    align-content: center;
-    margin: 0 auto;
-    left: 0px;
-    top: 0;
-    width: 960px;
-}
+
 .search-bar {
-    width: 932px;
+    top: 5px;
+    width: auto;
+    margin: 15px;
     position: relative;
     height: 40px;
     display: flex;
+
 }
 .label-an {
     flex: 1;
@@ -55,10 +54,10 @@
     border-radius:10px;
     font-weight:normal;
     height:40px;
+    width:100px;
 }
-btn-timkiem:active{
+btn-timkiem:active,.btn-timkiem:hover{
     font-weight:bold;
-    color:red;
 }
 .container2 {
     margin-top:10px;
@@ -79,11 +78,56 @@ btn-timkiem:active{
     border-radius:10px;
     margin-left:5px
 }
-
-
-.district-form {
+.btn-locsao {
+    border-radius: 10px;
+    font-weight: normal;
+}
+    .btn-locsao:hover, .btn-locsao:active {
+        font-weight: bold;
+        
+    }
+.product {
+    display: flex;
+    height: auto;
+}
+.img-anhks {
+    flex:35%;
+    width: 300px; 
+    height: 200px; 
+    overflow: hidden;
     border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff;
+    border-radius:10px;
+}
+.image-khachsan {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.thongtin-khachsan{
+    flex:65%;
+    padding:5px;
+    margin-left:10px;
+    position:relative;
+}
+.btn-datphong {
+    width: 200px;
+    border-radius: 10px;
+    height: 30px;
+    margin-left:5px;
+}
+    .btn-datphong:hover, .btn-datphong:active, .btn-luuphong:hover, .btn-luuphong:active {
+        font-weight: bold;
+    }
+.btn-luuphong {
+    height: 30px;
+    border-radius: 10px;
+    margin-right:5px;
+}
+.nut {
+    display:flex;
+    position: absolute;
+    
+    height: 30px;
+    bottom: 0px;
+    right: 0px;
 }
