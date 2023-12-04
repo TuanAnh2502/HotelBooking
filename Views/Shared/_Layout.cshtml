@@ -58,13 +58,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Giới Thiệu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TblKhachSans" asp-action="Index">Đặt Phòng</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TblDatphongs" asp-action="Index">Đặt Phòng</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Lưu Trữ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Quanlykhachsan" asp-action="Index">Quản Lý Phòng</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Quanlykhachsan" asp-action="Index" asp-route-id="@ViewBag.UserId">Quản Lý Phòng</a>
                         </li>
                     </ul>
                 </div>

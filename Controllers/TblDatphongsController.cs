@@ -21,8 +21,13 @@ namespace HotelBooking.Controllers
         // GET: TblDatphongs
         public async Task<IActionResult> Index()
         {
-            var hotelBookingContext = _context.TblDatphongs.Include(t => t.IdPhongNavigation).Include(t => t.IdUserNavigation);
-            return View(await hotelBookingContext.ToListAsync());
+            
+            var hotelslist = await _context.TblKhachSans
+                                   .Include(h => h.IdUserNavigation)
+                                   .ToListAsync();
+          
+
+            return View(hotelslist);
         }
 
         // GET: TblDatphongs/Details/5
@@ -46,10 +51,14 @@ namespace HotelBooking.Controllers
         }
 
         // GET: TblDatphongs/Create
-        public IActionResult Create()
+        public IActionResult Create(int? idPhong)
         {
-            ViewData["IdPhong"] = new SelectList(_context.TblPhongs, "IdPhong", "IdPhong");
-            ViewData["IdUser"] = new SelectList(_context.TblUsers, "IdUser", "IdUser");
+            ViewBag.IdPhongvalue = idPhong;
+/*            if (TempData.TryGetValue("UserId", out var userId) && TempData.TryGetValue("UserName", out var userName))
+            {
+                ViewBag.UserId = userId;
+            }
+            ViewData["IdUser"] = TempData.TryGetValue("UserId", out var userId)*/ /*new SelectList(_context.TblUsers, "IdUser", "IdUser")*/;
             return View();
         }
 
@@ -66,8 +75,8 @@ namespace HotelBooking.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdPhong"] = new SelectList(_context.TblPhongs, "IdPhong", "IdPhong", tblDatphong.IdPhong);
-            ViewData["IdUser"] = new SelectList(_context.TblUsers, "IdUser", "IdUser", tblDatphong.IdUser);
+            /*ViewData["IdPhong"] = new SelectList(_context.TblPhongs, "IdPhong", "IdPhong", tblDatphong.IdPhong);
+            ViewData["IdUser"] = new SelectList(_context.TblUsers, "IdUser", "IdUser", tblDatphong.IdUser);*/
             return View(tblDatphong);
         }
 
