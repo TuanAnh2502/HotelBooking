@@ -22,7 +22,7 @@ namespace HotelBooking.Controllers
             ViewBag.idks = id;
             // Gán giá trị vào ViewBag để sử dụng trong view
             ViewBag.kieu = kieuPhong;
-            
+            ViewBag.mota= (await _context.TblKhachSans.FirstOrDefaultAsync(m => m.IdKhachsan == id))?.SMotakhachsan;
             var tblPhongs = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t=> t.IdKhachsan==id).ToListAsync();
             var tblkieu = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t => t.IdKhachsan == id&& t.SKieuPhong==kieuPhong).ToListAsync();
             if (kieuPhong == null)
