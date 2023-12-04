@@ -51,9 +51,8 @@ namespace HotelBooking.Controllers
     }
 
     // GET: TblKhachSans/Create
-    public IActionResult Create(int? idUser)
+    public IActionResult Create()
     {
-            ViewBag.idUser=idUser;
         return View();
 
     }
