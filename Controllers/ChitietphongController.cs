@@ -14,14 +14,14 @@ namespace HotelBooking.Controllers
             _logger = logger;
             _context = context;
         }
-        [Route("/Chitietphong")]
-        public async Task<IActionResult> Index(int? idkhachsan)
+/*        [Route("/Chitietphong")]
+*/        public async Task<IActionResult> Index(int? idkhachsan)
         {
             string kieuPhong = HttpContext.Request.Query["kieuphong"];
 
             // Gán giá trị vào ViewBag để sử dụng trong view
             ViewBag.kieu = kieuPhong;
-            var hotelBookingContext = _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t=> t.IdKhachsan== idkhachsan);
+            var hotelBookingContext = _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t=> t.IdKhachsan==6);
             return View(await hotelBookingContext.ToListAsync());
         }
         public async Task<IActionResult> Details(int? id)
