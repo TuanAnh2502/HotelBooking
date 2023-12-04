@@ -15,6 +15,7 @@ namespace HotelBooking.Controllers
             _logger = logger;
             _context = context;
         }
+
 /*        [Route("/Chitietphong")]
 */        public async Task<IActionResult> Index(int? id)
         {

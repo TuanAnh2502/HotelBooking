@@ -47,7 +47,7 @@
                 {
                     <div class="product">
                         <div class="img-anhks">
-                            <a asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="image-khachsan" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                            <a asp-area="" asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="image-khachsan" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
                         </div>
                         <div class="thongtin-khachsan">
                             <div class="tenkhachsan"><h5>@Html.DisplayFor(modelItem => item.STenkhachsan)</h5></div>
@@ -68,6 +68,7 @@
                         </div>
                     </div>
                     <hr style="border-top: 2px solid #000;">
+
                 }
             </div>
             </div>
