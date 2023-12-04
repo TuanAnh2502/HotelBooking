@@ -8,7 +8,6 @@
     margin: 0 auto;
     position:relative;
 }
-
 .search-bar {
     top: 5px;
     width: auto;
@@ -16,15 +15,13 @@
     position: relative;
     height: 40px;
     display: flex;
-
 }
 .label-an {
     flex: 1;
     height: 40px;
     border-color: black;
-    border: 1px solid black;
     border-radius: 10px;
-    
+    margin:5px;
 }
 .diadiem {
     height: 100%;
@@ -55,23 +52,22 @@
     font-weight:normal;
     height:40px;
     width:100px;
+    margin:5px;
 }
 btn-timkiem:active,.btn-timkiem:hover{
     font-weight:bold;
 }
 .container2 {
-    margin-top:10px;
+    margin-top:25px;
     display: grid;
     grid-template-columns: 3fr 7fr;
 }
-
 .column1 {
     background-color: #f0f0f0;
     padding:20px;
     border-radius:10px;
     margin-right:5px;
 }
-
 .column2 {
     background-color: #f0f0f0;
     padding:20px;
@@ -109,25 +105,26 @@ btn-timkiem:active,.btn-timkiem:hover{
     margin-left:10px;
     position:relative;
 }
+
+.nut {
+    display: flex;
+    position: absolute;
+    height: 30px;
+    bottom: 0px;
+    right: 0px;
+}
 .btn-datphong {
     width: 200px;
     border-radius: 10px;
     height: 30px;
     margin-left:5px;
 }
-    .btn-datphong:hover, .btn-datphong:active, .btn-luuphong:hover, .btn-luuphong:active {
-        font-weight: bold;
-    }
 .btn-luuphong {
+    width: 100px;
     height: 30px;
     border-radius: 10px;
-    margin-right:5px;
+    margin-right: 5px;
 }
-.nut {
-    display:flex;
-    position: absolute;
-    
-    height: 30px;
-    bottom: 0px;
-    right: 0px;
-}
+.btn-datphong:hover, .btn-datphong:active, .btn-luuphong:hover, .btn-luuphong:active {
+        font-weight: bold;
+    }

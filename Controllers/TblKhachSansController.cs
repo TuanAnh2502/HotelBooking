@@ -23,7 +23,13 @@ namespace HotelBooking.Controllers
         {
             return View(await _context.TblKhachSans.ToListAsync());
         }
-
+        public IActionResult GetFilteredHotels(int rating)
+        {
+            // Xử lý lọc khách sạn dựa trên rating, và trả về một phần của View
+            var filteredHotels = _context.TblKhachSans.Where(h => h.SDanhgia >= rating).ToList();// Code để lấy danh sách khách sạn theo điều kiện rating
+            
+            return PartialView("_FilteredHotelsPartialView", filteredHotels);
+        }
         // GET: TblKhachSans/Details/5
         public async Task<IActionResult> Details(int? id)
         {
