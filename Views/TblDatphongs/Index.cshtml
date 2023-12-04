@@ -5,18 +5,21 @@
 }
 <head>
     <link rel="stylesheet" href="/css/Datphong/styles.css" />
-    <script src="~/js/locsao.js"></script>
+    <script src="~/js/luuform.js"></script>
 </head>
     
 <div class="box">
-    <div class="search-bar">
-        <div class="label-an"><input type="text" class="diadiem" placeholder="Bạn muốn đi đâu"></input></div>
-        <div class="label-an"><input type="date" class="ngaycheckin" placeholder="Ngày check-in"></div>
-        <div class="label-an"><input type="date" class="ngaycheckout" placeholder="Ngày check-out"></div>
-        <div class="label-an"><input type="number" class="songuoi" placeholder="Số người"></div>
-        <div class="timkiem"><button class="btn-timkiem">Tìm kiếm</button></div>
+
+    <form id="formtimkiem" asp-controller="TblDatphongs" method="get" asp-action="Index">
+        <div class="search-bar">
+            <div class="label-an"><input type="text" class="diadiem" name="address" placeholder="Bạn muốn đi đâu"></input></div>
+            <div class="label-an"><input type="date" class="ngaycheckin" name="nhanphong" placeholder="Ngày check-in"></div>
+            <div class="label-an"><input type="date" class="ngaycheckout" name="traphong" placeholder="Ngày check-out"></div>
+            <div class="label-an"><input type="number" class="songuoi" name="number"  placeholder="Số người"></div>
+            <div class="timkiem"><button type="submit" class="btn-timkiem">Tìm Kiếm</button></div>
         </div>
-    
+        </form>
+        
     <div class="container2">
         <div class="column1">
                 <h3>Những thiết yếu cần có</h3>
@@ -24,17 +27,16 @@
 
                 <div>
                     <p><b>Xếp hạng chỗ nghỉ</b></p>
-                    
-                    <form id="formsao" method="get" asp-controller="TblDatphongs" asp-action="Index">
+
+                <form id="formsao" method="get" asp-controller="TblDatphongs" asp-action="Index">
                         <input type="radio" class="star5" name="rating" value="5"> 5 sao<br>
                         <input type="radio" class="star4" name="rating" value="4"> 4 sao<br>
                         <input type="radio" class="star3" name="rating" value="3"> 3 sao<br>
-                        <input type="radio" class="star2" name="rating" value="2"> 2 sao <br>
-                        <input type="radio" class="star1" name="rating" value="1"> 1 sao <br>
+                        <input type="radio" class="star2" name="rating" value="2"> 2 sao<br>
+                        <input type="radio" class="star1" name="rating" value="1"> 1 sao<br>
                         <hr style="border-top: 2px solid #000;">
-                        <input class="btn-locsao" type="submit" value="Lọc" />
+                        <input class="btn-locsao" type="submit" value="Lọc"/>
                     </form>
-                    
                 </div>
             </div>
         <div class="column2">
@@ -74,4 +76,3 @@
             </div>
         </div>
     </div>
-

@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 
 namespace HotelBooking.Models;
+public class CombinedData
+{
+    public string Address { get; set; }
+    public decimal Rating { get; set; }
+    // Các thuộc tính khác nếu cần
+}
 
 public partial class TblDatphong
 {

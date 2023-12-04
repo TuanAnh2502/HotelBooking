@@ -18,42 +18,29 @@ namespace HotelBooking.Controllers
             _context = context;
         }
 
-        // GET: TblDatphongs
-        /*public async Task<IActionResult> Index(decimal? rating)
-        {
-            if (rating.HasValue)
-            {
-                decimal lowerBound = rating ?? 0; // Giá trị rating hoặc 0 nếu rating không có giá trị
-                decimal upperBound = rating.HasValue ? rating.Value + 1 : 0; // Giá trị rating + 1 hoặc 0 nếu rating không có giá trị
-
-                var hotelslist = await _context.TblKhachSans
-                    .Include(h => h.IdUserNavigation)
-                    .Where(h => h.SDanhgia >= lowerBound && h.SDanhgia < upperBound)
-                    .ToListAsync();
-
-                return View(hotelslist);
-            }
-            else
-            {
-                var hotelslist = await _context.TblKhachSans
-                                       .Include(h => h.IdUserNavigation)
-                                       .ToListAsync();
-                return View(hotelslist);
-            }
-        }*/
+        
         public async Task<IActionResult> Index(decimal? rating, string address, DateTime? nhanphong, DateTime? traphong, int? number)
         {
             var query = _context.TblKhachSans.Include(h => h.IdUserNavigation).AsQueryable();
-
+            //Thêm điều kiện lọc cho địa chỉ + đánh giá
+            if (rating.HasValue&& !string.IsNullOrEmpty(address))
+            {
+                decimal lowerBound = rating ?? 0;
+                decimal upperBound = rating.HasValue ? rating.Value + 1 : 0;
+                var combinedData = new CombinedData { Address = address, Rating = (int)rating };
+                query = query.Where(h => h.SDanhgia >= lowerBound && h.SDanhgia < upperBound && h.SDiachi.ToLower().Contains(address));
+                return View(combinedData);
+            }
             // Thêm điều kiện lọc cho đánh giá (rating)
             if (rating.HasValue)
             {
                 decimal lowerBound = rating ?? 0;
                 decimal upperBound = rating.HasValue ? rating.Value + 1 : 0;
-
+                
                 query = query.Where(h => h.SDanhgia >= lowerBound && h.SDanhgia < upperBound);
-            }
 
+            }
+            
             // Thêm điều kiện lọc cho địa chỉ (address)
             if (!string.IsNullOrEmpty(address))
             {
@@ -78,6 +65,17 @@ namespace HotelBooking.Controllers
 
             var hotelsList = await query.ToListAsync();
             return View(hotelsList);
+            // Trong action method của bạn
+            
+
+        }
+        public IActionResult FilterResult(string address, int rating)
+        {
+            // Xử lý và kết hợp dữ liệu từ hai form
+            var combinedData = new CombinedData { Address = address, Rating = rating };
+
+            // Trả về view với dữ liệu kết hợp
+            return View(combinedData);
         }
 
         // GET: TblDatphongs/Details/5
