@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HotelBooking.Models.TblDatphong>
+﻿@model IEnumerable<HotelBooking.Models.TblKhachSan>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,12 +6,7 @@
 <head>
     <link rel="stylesheet" href="/css/Datphong/styles.css" />
 </head>
-    <div class="title">
-    <h1>Index</h1>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    </div>
+    
 <div class="box">
     <div class="search-bar">
         <div class="label-an"><input type="text" class="diadiem" placeholder="Bạn muốn đi đâu"></input></div>
@@ -23,35 +18,23 @@
     
     <div class="container2">
         <div class="column1">
-                <h2>Những thiết yếu cần có</h2><
+                <h2>Những thiết yếu cần có</h2>
                 <hr style="border-top: 2px solid #000;">
 
                 <div>
                     <p><b>Xếp hạng chỗ nghỉ</b></p>
-                    <form>
+                    
                     <div class="rating">
                         <input type="radio" class="star5" name="rating" value="5"> 5 sao<br>
                         <input type="radio" class="star4" name="rating" value="4"> 4 sao<br>
                         <input type="radio" class="star3" name="rating" value="3"> 3 sao<br>
-                        
                         <input type="radio" class="star2" name="rating" value="2"> 2 sao <br>
-                       
                         <input type="radio" class="star1" name="rating" value="1"> 1 sao <br>
                     
                     </div>
-                    </form>
+                    
                     <hr style="border-top: 2px solid #000;">
-                    <div>
-                        <p><b>Khu vực</b></p><br/>
-                        <p>Thành phố: Hà Nội</p>
-                    <form class="district-form">
-                        <label><input type="checkbox" name="district" value="Ba Đình"> Ba Đình</label><br>
-                        <label><input type="checkbox" name="district" value="Hoàn Kiếm"> Hoàn Kiếm</label><br>
-                        <label><input type="checkbox" name="district" value="Tây Hồ"> Tây Hồ</label><br>
-                        <!-- Thêm các checkbox khác tương tự ở đây -->
-                    </form>
-
-                    </div>
+                    <button class="btn-locsao">Lọc</button>
                 </div>
             </div>
         <div class="column2">
@@ -60,24 +43,34 @@
                     <hr style="border-top: 2px solid #000;">
             </div>
             <div>
-                    @{
-                        int i = 0;
-                    @foreach (var hotel in ViewBag.hotelslist)
-                        {
-                            <!-- Hiển thị các thông tin khác của khách sạn -->
-                            <div class="hottel-@i">
-                                <div class="text-wrapper-10">@hotel.STenkhachsan</div>
-                                <div class="text-wrapper-11">@hotel.SDiachi</div>
-                                <div class="text-wrapper-12">Giá từ: 1.300.000 VND</div>
-                                <div class="overlap-group-3">
-                                    <div class="rectangle"></div>
-                                    <div class="text-wrapper-13">Đặt phòng ngay</div>
-                                </div>
-                                <img class="image" src="@hotel.SAnhkhachsan" />
+                @foreach (var item in Model)
+                {
+                    <div class="product">
+                        <div class="img-anhks">
+                            <a asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="image-khachsan" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                        </div>
+                        <div class="thongtin-khachsan">
+                            <div class="tenkhachsan"><h4>@Html.DisplayFor(modelItem => item.STenkhachsan)</h4></div>
+                            <hr style="border-top: 1px solid #000;width:400px">
+                            <div class="diachi"><h6>@Html.DisplayFor(modelItem => item.SDiachi)</h6></div>
+                            <div class="mota">
+                                <p>@Html.DisplayFor(modelItem => item.SMotakhachsan)</p>
                             </div>
-                            i++;
-                        }
-                    }
+                            <div class="nut">
+                            <a asp- asp-controller="" asp-action="Details" asp-route-id="@item.IdKhachsan">
+                                <button class="btn-luuphong">Lưu</button>
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.IdKhachsan">
+                            <button class="btn-datphong">Đặt phòng ngay</button>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border-top: 2px solid #000;">
+                
+                }
+               
+                
             </div>
             </div>
         </div>
