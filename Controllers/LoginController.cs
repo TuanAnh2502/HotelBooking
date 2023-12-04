@@ -1,6 +1,7 @@
 ﻿using HotelBooking.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace HotelBooking.Controllers {
 [Area("User")]
@@ -13,7 +14,7 @@ public class LoginController : Controller
         _logger = logger;
         _context = context;
     }
-    [Route("/Login/Index")]
+    [Route("/Login")]
     public IActionResult Index()
     {
         return View("~/Views/Login/Login.cshtml");
@@ -28,7 +29,8 @@ public class LoginController : Controller
 
         var member = await _context.TblUsers.FirstOrDefaultAsync(m => m.SEmail == name && m.SMatkhau == password);
 
-        if (member != null)
+            
+            if (member != null)
         {
 
             HttpContext.Session.SetInt32("UserId", member.IdUser);
@@ -38,6 +40,7 @@ public class LoginController : Controller
                 TempData["UserId"] = member.IdUser;
                 TempData["UserName"] = member.STendaydu;
                 return RedirectToAction("Index", "Home");
+                
 
         }
         else

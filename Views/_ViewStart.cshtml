@@ -1,3 +1,15 @@
 ﻿@{
-    Layout ="_Layout";
+    Layout = "_Layout";
+    if (User.Identity.IsAuthenticated)
+    {
+        // Lấy thông tin người dùng từ Session và hiển thị
+        var userId = Context.Session.GetInt32("UserId");
+        var userName = Context.Session.GetString("UserName");
+
+        if (userId != null && userName != null)
+        {
+            ViewBag.UserId = userId;
+            ViewBag.UserName = userName;
+        }
+    }
 }
