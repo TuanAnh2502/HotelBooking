@@ -46,10 +46,14 @@ namespace HotelBooking.Controllers
              .Include(t => t.IdKhachsanNavigation)
              .Where(t => t.IdKhachsan == id)
              .ToListAsync();
+
             ViewBag.tenkhachsan = await _context.TblKhachSans
             .Where(m => m.IdKhachsan == id)
             .Select(m => m.STenkhachsan)
             .FirstOrDefaultAsync();
+
+            ViewBag.idkhachsan = id;
+
             if (tblPhong == null)
         {
             return NotFound();

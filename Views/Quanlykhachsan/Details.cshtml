@@ -8,7 +8,7 @@
 <h1>Danh Sach Cac Phong: @ViewBag.tenkhachsan</h1>
 
 <p class="them">
-    <button type="button"><a asp-action="Create">Thêm Phòng Mới</a></button>
+    <button type="button"><a asp-controller="TblPhongs" asp-action="Create" asp-route-id="@ViewBag.idkhachsan">Thêm Phòng Mới</a></button>
 </p>
 <table class="table">
     <thead>

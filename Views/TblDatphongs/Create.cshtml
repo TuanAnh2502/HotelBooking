@@ -20,8 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdPhong" class="control-label"></label>
-                <input asp-for="IdPhong" class ="form-control" value="@idPhongValue" readonly>
-                <span asp-validation-for="IdPhong" class="text-danger"></span>
+                <select asp-for="IdPhong" class="form-control" asp-items="ViewBag.IdPhong"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DNgaycheckin" class="control-label"></label>

@@ -53,9 +53,10 @@ namespace HotelBooking.Controllers
         }
 
         // GET: TblPhongs/Create
-        public IActionResult Create()
+        public IActionResult Create(int ? id)
         {
-            ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan");
+            ViewBag.idkhachsan = id;
+           /* ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan");*/
             return View();
         }
 
@@ -70,9 +71,13 @@ namespace HotelBooking.Controllers
             {
                 _context.Add(tblPhong);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // Lấy IdKhachsan sau khi đã lưu vào cơ sở dữ liệu
+                int idKhachsan = (int)tblPhong.IdKhachsan;
+
+                // Chuyển hướng đến trang Quanlykhacsan/Detail/id
+                return RedirectToAction( "Details", "Quanlykhachsan", new { id = idKhachsan });
             }
-            ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan", tblPhong.IdKhachsan);
+            /*ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan", tblPhong.IdKhachsan);*/
             return View(tblPhong);
         }
 
@@ -160,7 +165,10 @@ namespace HotelBooking.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            int idKhachsan = (int)tblPhong.IdKhachsan;
+
+            // Chuyển hướng đến trang Quanlykhacsan/Detail/id
+            return RedirectToAction("Details", "Quanlykhachsan", new { id = idKhachsan });
         }
 
         private bool TblPhongExists(int id)
