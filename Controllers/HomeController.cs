@@ -25,7 +25,20 @@ namespace HotelBooking.Controllers
                 ViewBag.UserName = userName;
             }
             ViewBag.IsLoggedIn = User.Identity.IsAuthenticated;
-            return View(await _context.TblKhachSans.ToListAsync());
+            var hanoiList = await _context.TblKhachSans
+           .Where(khachsan => khachsan.SDiachi.ToLower().Contains("hà nội") && khachsan.SDanhgia > 4)
+         .ToListAsync();
+
+            var tphcmList = await _context.TblKhachSans
+                  .Where(khachsan => khachsan.SDiachi.ToLower().Contains("TP.HCM") && khachsan.SDanhgia > 4)
+
+                .ToListAsync();
+
+            // Bạn có thể lưu trữ danh sách trong ViewBag hoặc ViewModel để truyền vào view
+            ViewBag.HanoiList = hanoiList;
+            ViewBag.TPHCMList = tphcmList;
+
+            return View();
         }
         // GET: TblKhachSans/Details/5
         [Route("Logout")]

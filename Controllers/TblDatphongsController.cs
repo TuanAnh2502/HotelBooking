@@ -19,7 +19,7 @@ namespace HotelBooking.Controllers
         }
 
         // GET: TblDatphongs
-        public async Task<IActionResult> Index(decimal? rating)
+        /*public async Task<IActionResult> Index(decimal? rating)
         {
             if (rating.HasValue)
             {
@@ -40,6 +40,44 @@ namespace HotelBooking.Controllers
                                        .ToListAsync();
                 return View(hotelslist);
             }
+        }*/
+        public async Task<IActionResult> Index(decimal? rating, string address, DateTime? nhanphong, DateTime? traphong, int? number)
+        {
+            var query = _context.TblKhachSans.Include(h => h.IdUserNavigation).AsQueryable();
+
+            // Thêm điều kiện lọc cho đánh giá (rating)
+            if (rating.HasValue)
+            {
+                decimal lowerBound = rating ?? 0;
+                decimal upperBound = rating.HasValue ? rating.Value + 1 : 0;
+
+                query = query.Where(h => h.SDanhgia >= lowerBound && h.SDanhgia < upperBound);
+            }
+
+            // Thêm điều kiện lọc cho địa chỉ (address)
+            if (!string.IsNullOrEmpty(address))
+            {
+                query = query.Where(khachsan => khachsan.SDiachi.ToLower().Contains(address));
+            }
+
+            // Thêm các điều kiện lọc khác tùy thuộc vào yêu cầu của bạn
+            if (nhanphong.HasValue)
+            {
+                /*query = query.Where(h => *//* Thêm logic kiểm tra ngày nhận phòng *//*);*/
+            }
+
+            if (traphong.HasValue)
+            {
+                /*query = query.Where(h => *//* Thêm logic kiểm tra ngày trả phòng *//*);*/
+            }
+
+            if (number.HasValue)
+            {
+                /*query = query.Where(h => *//* Thêm logic kiểm tra số người *//*);*/
+            }
+
+            var hotelsList = await query.ToListAsync();
+            return View(hotelsList);
         }
 
         // GET: TblDatphongs/Details/5
