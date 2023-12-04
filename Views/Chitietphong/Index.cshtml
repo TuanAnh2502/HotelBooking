@@ -1,0 +1,107 @@
+﻿@model IEnumerable<HotelBooking.Models.TblPhong>
+@{
+    ViewData["Title"] = "Chi tiết phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="/css/Chithietphong/chitietphong.css" rel="stylesheet">
+</head>
+<div class="content">
+    <div class="Header_chitiet">
+        <span class="name_khachsan">
+            Hà nội Hotel
+        </span>
+    </div>
+    <div class="Body_chitiet">
+        <div class="Imgreview_phong">
+            <img src="/img/image-4.png" />
+        </div>
+        <div class="gioithieu_phong">
+            <div class="tiennghi_phong">
+                Wi-Fi, TV, điều hòa nhiệt độ
+            </div>  
+            <span class="mota_phong">
+                Tọa lạc ở Hà Nội, cách Bảo tàng dân tộc học Việt Nam 18 phút đi bộ, 22Land Residence Hotel & Spa Ha Noi cung cấp chỗ nghỉ có hồ bơi ngoài trời, chỗ đậu xe riêng miễn phí, trung tâm thể dục và phòng chờ chung. Ngoài nhà hàng, chỗ nghỉ còn có sân hiên và phòng xông hơi khô. Chỗ nghỉ cung cấp lễ tân 24/24, dịch vụ đưa đón sân bay, dịch vụ phòng và Wi-Fi miễn phí ở toàn bộ chỗ nghỉ.
+Khách sạn sẽ cung cấp cho khách các phòng có điều hòa, bàn làm việc, ấm đun nước, minibar, két an toàn, TV màn hình phẳng và phòng tắm riêng với vòi xịt/chậu rửa vệ sinh. Tại 22Land Residence Hotel & Spa Ha Noi, tất cả các phòng đều được thiết kế có ga trải giường và khăn tắm.
+            </span>
+            <div class="gia_phong">12000000</div>
+        </div>
+        <button class="btn-datphong">Đặt Ngay</button>
+    </div>
+    
+        <div class="timkiem">
+            <input type="text" class="timkiem_input" id="timkiem_diachi" name="address" placeholder="Bạn muốn đến đâu" />
+            <input type="date" class="timkiem_input" id="timkiem_date_nhan" name="nhanphong" placeholder="Ngày nhận">
+            <input type="date" class="timkiem_input" id="timkiem_date_tra" name="traphong" placeholder="Ngày tra">
+            <input type="number" class="timkiem_input" id="timkiem_number" name="number" placeholder="Số Người" />
+            <button type="submit">Tìm Kiếm</button>
+        </div>
+
+    <div class="footer_chitiet">
+        <div class="column1">
+            <h2>Những thiết yếu cần có</h2>
+            <hr style="border-top: 2px solid #000;">
+
+            <div>
+                <p><b>Xếp hạng chỗ nghỉ</b></p>
+                <form method="get" asp-action="">
+                    <!-- Các ô input cho lọc -->
+                    <div class="danhsachfilter">
+                        @foreach (var item in Model)
+                        {
+                            <input type="radio" class="input_loc" name="kieuphong" value="@item.SKieuPhong" @(ViewBag.kieu == item.SKieuPhong ? "checked" : "")>
+                            @item.SKieuPhong
+                            <br />
+                        }
+                    </div>
+
+                    <input type="submit" name="loc" id="btn_loc" value="Lọc" />
+                </form>
+
+            </div>
+
+        </div>
+        <div class="column2">
+            <h2 class="Loc_title">@ViewBag.kieu</h2>
+            @foreach (var item in Model)
+            {
+                if (item.SKieuPhong ==ViewBag.kieu)
+                    {
+                        <div class="phong_daloc">
+                            <div class="phong_content">
+
+                                <div class="left_content">
+                                    <div class="anh">
+                                        <a asp-action="Details" asp-route-id="@item.IdPhong">
+                                        <img class="phong_image" src="~/img/image-9.png" />
+                                        </a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                                </div>
+                                <div class="khachsan_phongloc">
+                                    @Html.DisplayFor(modelItem => item.IdKhachsan)
+                                </div>
+                                    <div class="kieuphong_phongloc">
+                                        @Html.DisplayFor(modelItem => item.SKieuPhong)
+                                    </div>
+                                    <div class="tiennghi_phongloc">
+                                        @Html.DisplayFor(modelItem => item.STiennghi)
+                                    </div>
+                                    <div class="mota_phongloc">
+                                        Đánh Giá: @Html.DisplayFor(modelItem => item.SMotaphong)
+                                    </div>
+                                </div>
+                                <div class="right_content">
+                                    <div class="datphong">
+                                        <a asp-action="Details" asp-route-id="@item.IdPhong"><button type="button">Đặt phòng ngay</button></a>
+                                    </div>
+
+                                    <div class="giaphong_phongloc">
+                                    @Html.DisplayFor(modelItem => item.FGiaphong)
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                }
+            }
+        </div>
+
+  </div>
