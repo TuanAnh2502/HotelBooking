@@ -22,7 +22,7 @@ namespace HotelBooking.Controllers
             }
 
             var khachSanList = await _context.TblKhachSans
-                .Where(khachSan => khachSan.IdKhachsan == id)
+                .Where(khachSan => khachSan.IdUser == id)
                 .ToListAsync();
             return View(khachSanList);
         }
@@ -51,9 +51,8 @@ namespace HotelBooking.Controllers
     }
 
     // GET: TblKhachSans/Create
-    public IActionResult Create(int? idUser)
+    public IActionResult Create()
     {
-            ViewBag.idUser=idUser;
         return View();
 
     }
@@ -65,14 +64,25 @@ namespace HotelBooking.Controllers
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("IdKhachsan,STenkhachsan,SDiachi,SMotakhachsan,SAnhkhachsan,SDanhgia,IdUser")] TblKhachSan tblKhachSan)
     {
-        if (ModelState.IsValid)
-        {
-            _context.Add(tblKhachSan);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (ViewBag.UserId == null)
+            {
+                // Nếu ViewBag.UserId không có giá trị, hiển thị thông báo không tìm thấy người dùng
+                ModelState.AddModelError("UserId", "Không tìm thấy người dùng.");
+                return View(tblKhachSan);
+            }
+
+            // Nếu ViewBag.UserId có giá trị, tiếp tục lưu dữ liệu vào cơ sở dữ liệu
+            if (ModelState.IsValid)
+            {
+                tblKhachSan.IdUser = (int)ViewBag.UserId; // Gán giá trị cho IdUser từ ViewBag
+
+                _context.Add(tblKhachSan);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(tblKhachSan);
         }
-        return View(tblKhachSan);
-    }
 
     // GET: TblKhachSans/Edit/5
     public async Task<IActionResult> Edit(int? id)
