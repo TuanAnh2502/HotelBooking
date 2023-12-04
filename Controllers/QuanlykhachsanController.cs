@@ -1,6 +1,7 @@
 ﻿using HotelBooking.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace HotelBooking.Controllers
 {
@@ -15,12 +16,19 @@ namespace HotelBooking.Controllers
 
     // GET: TblKhachSans
     public async Task<IActionResult> Index(int? id)
-    {
+        {
+
+            if (HttpContext.Session.TryGetValue("UserId", out var userId) && HttpContext.Session.TryGetValue("UserName", out var userName))
+            {
+                var userIdString = HttpContext.Session.GetInt32("UserId");
+                var userNameString = Encoding.UTF8.GetString(userName);
+                ViewBag.UserId = userIdString;
+                ViewBag.UserName = userNameString;
+            }
             if (id == null)
             {
                 return View("~/Views/Login/Login.cshtml");
             }
-
             var khachSanList = await _context.TblKhachSans
                 .Where(khachSan => khachSan.IdUser == id)
                 .ToListAsync();
@@ -38,10 +46,14 @@ namespace HotelBooking.Controllers
              .Include(t => t.IdKhachsanNavigation)
              .Where(t => t.IdKhachsan == id)
              .ToListAsync();
+
             ViewBag.tenkhachsan = await _context.TblKhachSans
             .Where(m => m.IdKhachsan == id)
             .Select(m => m.STenkhachsan)
             .FirstOrDefaultAsync();
+
+            ViewBag.idkhachsan = id;
+
             if (tblPhong == null)
         {
             return NotFound();
@@ -52,8 +64,8 @@ namespace HotelBooking.Controllers
 
     // GET: TblKhachSans/Create
     public IActionResult Create()
-    {
-        return View();
+        {
+            return View();
 
     }
 
@@ -63,22 +75,22 @@ namespace HotelBooking.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("IdKhachsan,STenkhachsan,SDiachi,SMotakhachsan,SAnhkhachsan,SDanhgia,IdUser")] TblKhachSan tblKhachSan)
-    {
-            if (ViewBag.UserId == null)
+        {
+            if (HttpContext.Session.TryGetValue("UserId", out var userId) && HttpContext.Session.TryGetValue("UserName", out var userName))
             {
-                // Nếu ViewBag.UserId không có giá trị, hiển thị thông báo không tìm thấy người dùng
-                ModelState.AddModelError("UserId", "Không tìm thấy người dùng.");
-                return View(tblKhachSan);
+                var userIdString = HttpContext.Session.GetInt32("UserId");
+                var userNameString = Encoding.UTF8.GetString(userName);
+                ViewBag.UserId = userIdString;
+                ViewBag.UserName = userNameString;
             }
 
             // Nếu ViewBag.UserId có giá trị, tiếp tục lưu dữ liệu vào cơ sở dữ liệu
             if (ModelState.IsValid)
             {
-                tblKhachSan.IdUser = (int)ViewBag.UserId; // Gán giá trị cho IdUser từ ViewBag
-
+                tblKhachSan.IdUser= ViewBag.UserId;
                 _context.Add(tblKhachSan);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Quanlykhachsan", new {id=tblKhachSan.IdUser });
             }
 
             return View(tblKhachSan);

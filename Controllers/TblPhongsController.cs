@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelBooking.Models;
+using System.Text;
 
 namespace HotelBooking.Controllers
 {
@@ -21,6 +22,13 @@ namespace HotelBooking.Controllers
         // GET: TblPhongs
         public async Task<IActionResult> Index()
         {
+            if (HttpContext.Session.TryGetValue("UserId", out var userId) && HttpContext.Session.TryGetValue("UserName", out var userName))
+            {
+                var userIdString = HttpContext.Session.GetInt32("UserId");
+                var userNameString = Encoding.UTF8.GetString(userName);
+                ViewBag.UserId = userIdString;
+                ViewBag.UserName = userNameString;
+            }
             var hotelBookingContext = _context.TblPhongs.Include(t => t.IdKhachsanNavigation);
             return View(await hotelBookingContext.ToListAsync());
         }
@@ -45,9 +53,10 @@ namespace HotelBooking.Controllers
         }
 
         // GET: TblPhongs/Create
-        public IActionResult Create()
+        public IActionResult Create(int ? id)
         {
-            ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan");
+            ViewBag.idkhachsan = id;
+           /* ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan");*/
             return View();
         }
 
@@ -62,9 +71,13 @@ namespace HotelBooking.Controllers
             {
                 _context.Add(tblPhong);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // Lấy IdKhachsan sau khi đã lưu vào cơ sở dữ liệu
+                int idKhachsan = (int)tblPhong.IdKhachsan;
+
+                // Chuyển hướng đến trang Quanlykhacsan/Detail/id
+                return RedirectToAction( "Details", "Quanlykhachsan", new { id = idKhachsan });
             }
-            ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan", tblPhong.IdKhachsan);
+            /*ViewData["IdKhachsan"] = new SelectList(_context.TblKhachSans, "IdKhachsan", "IdKhachsan", tblPhong.IdKhachsan);*/
             return View(tblPhong);
         }
 
@@ -152,7 +165,10 @@ namespace HotelBooking.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            int idKhachsan = (int)tblPhong.IdKhachsan;
+
+            // Chuyển hướng đến trang Quanlykhacsan/Detail/id
+            return RedirectToAction("Details", "Quanlykhachsan", new { id = idKhachsan });
         }
 
         private bool TblPhongExists(int id)

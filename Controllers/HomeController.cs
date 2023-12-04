@@ -1,8 +1,10 @@
 ﻿using HotelBooking.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Text;
 
 namespace HotelBooking.Controllers
 {
@@ -19,10 +21,18 @@ namespace HotelBooking.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            if (TempData.TryGetValue("UserId", out var userId) && TempData.TryGetValue("UserName", out var userName))
+            /*if (TempData.TryGetValue("UserId", out var userId) && TempData.TryGetValue("UserName", out var userName))
             {
                 ViewBag.UserId = userId;
                 ViewBag.UserName = userName;
+            }
+            ViewBag.IsLoggedIn = User.Identity.IsAuthenticated;*/
+            if (HttpContext.Session.TryGetValue("UserId", out var userId) && HttpContext.Session.TryGetValue("UserName", out var userName))
+            {
+                var userIdString = HttpContext.Session.GetInt32("UserId");
+                var userNameString = Encoding.UTF8.GetString(userName);
+                ViewBag.UserId = userIdString;
+                ViewBag.UserName = userNameString;
             }
             ViewBag.IsLoggedIn = User.Identity.IsAuthenticated;
             var hanoiList = await _context.TblKhachSans
@@ -37,7 +47,7 @@ namespace HotelBooking.Controllers
             // Bạn có thể lưu trữ danh sách trong ViewBag hoặc ViewModel để truyền vào view
             ViewBag.HanoiList = hanoiList;
             ViewBag.TPHCMList = tphcmList;
-
+            TempData.TryGetValue("SuccessMessage", out var strings);
             return View();
         }
         // GET: TblKhachSans/Details/5
@@ -45,7 +55,8 @@ namespace HotelBooking.Controllers
         public async Task<IActionResult> Logout()
         {
             // Hủy bỏ các thông tin đăng nhập của người dùng
-            await HttpContext.SignOutAsync();
+            HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             // Điều hướng về trang chủ hoặc trang đăng nhập
             return RedirectToAction(nameof(Index), "Home");

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelBooking.Models;
+using System.Text;
 
 namespace HotelBooking.Controllers
 {
@@ -21,6 +22,13 @@ namespace HotelBooking.Controllers
         
         public async Task<IActionResult> Index(decimal? rating, string address, DateTime? nhanphong, DateTime? traphong, int? number)
         {
+            if (HttpContext.Session.TryGetValue("UserId", out var userId) && HttpContext.Session.TryGetValue("UserName", out var userName))
+            {
+                var userIdString = HttpContext.Session.GetInt32("UserId");
+                var userNameString = Encoding.UTF8.GetString(userName);
+                ViewBag.UserId = userIdString;
+                ViewBag.UserName = userNameString;
+            }
             var query = _context.TblKhachSans.Include(h => h.IdUserNavigation).AsQueryable();
             //Thêm điều kiện lọc cho địa chỉ + đánh giá
             if (rating.HasValue&& !string.IsNullOrEmpty(address))
@@ -99,14 +107,10 @@ namespace HotelBooking.Controllers
         }
 
         // GET: TblDatphongs/Create
-        public IActionResult Create(int? idPhong)
+        public IActionResult Create()
         {
-            ViewBag.IdPhongvalue = idPhong;
-/*            if (TempData.TryGetValue("UserId", out var userId) && TempData.TryGetValue("UserName", out var userName))
-            {
-                ViewBag.UserId = userId;
-            }
-            ViewData["IdUser"] = TempData.TryGetValue("UserId", out var userId)*/ /*new SelectList(_context.TblUsers, "IdUser", "IdUser")*/;
+            ViewData["IdPhong"] = new SelectList(_context.TblUsers, "IdPhong", "IdPhong");
+            ViewData["IdUser"] = new SelectList(_context.TblUsers, "IdUser", "IdUser");
             return View();
         }
 
@@ -123,8 +127,8 @@ namespace HotelBooking.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            /*ViewData["IdPhong"] = new SelectList(_context.TblPhongs, "IdPhong", "IdPhong", tblDatphong.IdPhong);
-            ViewData["IdUser"] = new SelectList(_context.TblUsers, "IdUser", "IdUser", tblDatphong.IdUser);*/
+            ViewData["IdPhong"] = new SelectList(_context.TblPhongs, "IdPhong", "IdPhong", tblDatphong.IdPhong);
+            ViewData["IdUser"] = new SelectList(_context.TblUsers, "IdUser", "IdUser", tblDatphong.IdUser);
             return View(tblDatphong);
         }
 

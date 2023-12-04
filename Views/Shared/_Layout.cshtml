@@ -26,14 +26,18 @@
                 <div class="weblienhe"><p class="li-n-h-h-tr">Liên hệ hỗ trợ 24/77<br /><br />Hotline:0320303303 <br />Email : 123@gmail.comcom</p></div>
                 <div class="user">
                     <div class="ellipse"></div>
-                    <form action="/Login/Index" method="get">
+                    <a asp-controller="Login" asp-action="Index">
                         <button type="submit">Đăng nhập</button>
+                    </a>
+                    <form asp-controller="Home" asp-action="Logout" method="post">
+                        <button type="submit">Đăng Xuất</button>
                     </form>
                     @if (ViewBag.UserId != null && ViewBag.UserName != null)
                     {
                         <div class="text_username">
                             <i class="fa-solid fa-user"></i>
                             @ViewBag.UserName
+                            @ViewBag.UserId
                         </div>
                     }
                 </div>
