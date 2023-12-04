@@ -1,0 +1,89 @@
+﻿.box {
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    align-content: center;
+    margin: 0 auto;
+}
+.title {
+    align-content: center;
+    margin: 0 auto;
+    left: 0px;
+    top: 0;
+    width: 960px;
+}
+.search-bar {
+    width: 932px;
+    position: relative;
+    height: 40px;
+    display: flex;
+}
+.label-an {
+    flex: 1;
+    height: 40px;
+    border-color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    
+}
+.diadiem {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.ngaycheckin {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.ngaycheckout {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.songuoi {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.btn-timkiem{
+    border-radius:10px;
+    font-weight:normal;
+    height:40px;
+}
+btn-timkiem:active{
+    font-weight:bold;
+    color:red;
+}
+.container2 {
+    margin-top:10px;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+
+.column1 {
+    background-color: #f0f0f0;
+    padding:20px;
+    border-radius:10px;
+    margin-right:5px;
+}
+
+.column2 {
+    background-color: #f0f0f0;
+    padding:20px;
+    border-radius:10px;
+    margin-left:5px
+}
+
+
+.district-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
