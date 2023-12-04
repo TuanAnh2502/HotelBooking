@@ -30,7 +30,6 @@
     <Folder Include="wwwroot\css\Lienhe\" />
     <Folder Include="wwwroot\css\Luutru\" />
     <Folder Include="wwwroot\css\Datphong\" />
-    <Folder Include="wwwroot\css\Chithietphong\" />
   </ItemGroup>
 
 </Project>
