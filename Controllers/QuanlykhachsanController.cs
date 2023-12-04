@@ -16,11 +16,19 @@ namespace HotelBooking.Controllers
     // GET: TblKhachSans
     public async Task<IActionResult> Index(int? id)
     {
-        return View(await _context.TblKhachSans.ToListAsync());
-    }
+            if (id == null)
+            {
+                return View("~/Views/Login/Login.cshtml");
+            }
+
+            var khachSanList = await _context.TblKhachSans
+                .Where(khachSan => khachSan.IdKhachsan == id)
+                .ToListAsync();
+            return View(khachSanList);
+        }
 
     // GET: TblKhachSans/Details/5
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details(int? id)//laays danh sach cac phong
     {
         if (id == null)
         {
@@ -43,9 +51,11 @@ namespace HotelBooking.Controllers
     }
 
     // GET: TblKhachSans/Create
-    public IActionResult Create()
+    public IActionResult Create(int? idUser)
     {
+            ViewBag.idUser=idUser;
         return View();
+
     }
 
     // POST: TblKhachSans/Create
@@ -53,7 +63,7 @@ namespace HotelBooking.Controllers
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("IdKhachsan,STenkhachsan,SDiachi,SMotakhachsan,SAnhkhachsan,SDanhgia")] TblKhachSan tblKhachSan)
+    public async Task<IActionResult> Create([Bind("IdKhachsan,STenkhachsan,SDiachi,SMotakhachsan,SAnhkhachsan,SDanhgia,IdUser")] TblKhachSan tblKhachSan)
     {
         if (ModelState.IsValid)
         {

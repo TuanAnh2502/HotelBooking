@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @* <a asp-action="Create" asp-route-id="">Create New</a> *@
 </p>
 <table class="table">
     <thead>
@@ -33,6 +33,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+               
             <td>
                 @Html.DisplayFor(modelItem => item.DNgaycheckin)
             </td>
@@ -47,11 +48,13 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdUserNavigation.IdUser)
-            </td>
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdMadatphong">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdMadatphong">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdMadatphong">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.IdMadatphong">Delete</a>  |
+                    <a asp-action="Create" asp-route-id="@item.IdPhongNavigation.IdPhong">Create</a>
+                
             </td>
         </tr>
 }
