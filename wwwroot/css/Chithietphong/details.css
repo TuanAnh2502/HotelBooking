@@ -1,0 +1,140 @@
+﻿.box {
+    width: 100%;
+    top: 10px;
+    left: 0;
+    background-color: #ffffff;
+    align-content: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-bar {
+    top: 5px;
+    width: auto;
+    margin: 15px;
+    position: relative;
+    height: 40px;
+    display: flex;
+}
+
+.label-an {
+    flex: 1;
+    height: 40px;
+    border-color: black;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.diadiem {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.ngaycheckin {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.ngaycheckout {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.songuoi {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.btn-timkiem {
+    border-radius: 10px;
+    font-weight: normal;
+    height: 40px;
+    width: 100px;
+    margin: 5px;
+}
+
+    btn-timkiem:active, .btn-timkiem:hover {
+        font-weight: bold;
+    }
+
+.container2 {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+
+.column1 {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 5px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    
+}
+
+.column2 {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 5px
+}
+
+.img-anhphong {
+    flex: 35%;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.image-phong {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thongtin-phong {
+    flex: 65%;
+    padding: 5px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.nut {
+    display: flex;
+    position: absolute;
+    height: 30px;
+    bottom: 0px;
+    right: 0px;
+}
+
+.btn-datphong {
+    width: 200px;
+    border-radius: 10px;
+    height: 30px;
+    margin-left: 5px;
+}
+
+
+
+    .btn-datphong:hover, .btn-datphong:active {
+        font-weight: bold;
+    }
+
+.adversite {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius:5px;
+}
