@@ -94,7 +94,7 @@
                 <div class="khachsan">
                     <div class="khachsan_content">
                         <div class="anh">
-                            <a asp-action="Details" asp-route-id="@item.IdKhachsan"><img class="khachsan_image" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                            <a asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="khachsan_image" src="https://vuongquocanh.com/wp-content/uploads/2018/05/london-eye.jpg" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
                         </div>
                         <div class="ten">
                             @item.STenkhachsan
@@ -106,7 +106,7 @@
                             Đánh Giá: @item.SDanhgia
                         </div>
                         <div class="datphong">
-                            <a asp-action="Details" asp-route-id="@item.IdKhachsan"><button type="button">Đặt phòng ngay</button></a>
+                            <a asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><button type="button">Đặt phòng ngay</button></a>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,4 @@
         </div>
          <div class="clear"></div>
     </div>
-</div>
-<div>
-    heet
 </div>

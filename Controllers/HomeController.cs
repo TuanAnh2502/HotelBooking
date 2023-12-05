@@ -40,7 +40,7 @@ namespace HotelBooking.Controllers
          .ToListAsync();
 
             var tphcmList = await _context.TblKhachSans
-                  .Where(khachsan => khachsan.SDiachi.ToLower().Contains("TP.HCM") && khachsan.SDanhgia > 4)
+                  .Where(khachsan => khachsan.SDiachi.ToLower().Contains("TP.HCM") && khachsan.SDanhgia > 4 || khachsan.SDiachi.ToLower().Contains("Hồ") && khachsan.SDanhgia>4)
 
                 .ToListAsync();
 

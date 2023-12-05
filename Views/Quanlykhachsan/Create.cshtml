@@ -4,39 +4,37 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>TblKhachSan</h4>
+<h1>Thêm Khách Sạn</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="STenkhachsan" class="control-label"></label>
+                <label asp-for="STenkhachsan" class="control-label">Tên Khách Sạn</label>
                 <input asp-for="STenkhachsan" class="form-control" />
                 <span asp-validation-for="STenkhachsan" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SDiachi" class="control-label"></label>
+                <label asp-for="SDiachi" class="control-label">Địa Chỉ</label>
                 <input asp-for="SDiachi" class="form-control" />
                 <span asp-validation-for="SDiachi" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SMotakhachsan" class="control-label"></label>
+                <label asp-for="SMotakhachsan" class="control-label">Mô Tả</label>
                 <input asp-for="SMotakhachsan" class="form-control" />
                 <span asp-validation-for="SMotakhachsan" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SAnhkhachsan" class="control-label"></label>
+                <label asp-for="SAnhkhachsan" class="control-label">Ảnh</label>
                 <input asp-for="SAnhkhachsan" class="form-control" />
                 <span asp-validation-for="SAnhkhachsan" class="text-danger"></span>
             </div>
-            <div class="form-group">
+@*             <div class="form-group">
                 <label asp-for="SDanhgia" class="control-label"></label>
                 <input asp-for="SDanhgia" class="form-control" />
                 <span asp-validation-for="SDanhgia" class="text-danger"></span>
-            </div>
+            </div> *@
                  <input type="hidden" asp-for="IdUser" value="@ViewBag.UserId" />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
