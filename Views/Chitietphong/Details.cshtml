@@ -1,0 +1,59 @@
+﻿@model HotelBooking.Models.TblPhong
+
+<head>
+    <link rel="stylesheet" href="/css/Chithietphong/details.css" />
+</head>
+<div class="box">
+
+    <form id="formtimkiem" asp-controller="TblDatphongs" method="get" asp-action="Index">
+        <div class="search-bar">
+            <div class="label-an"><input type="text" class="diadiem" name="address" placeholder="Bạn muốn đi đâu"></input></div>
+            <div class="label-an"><input type="date" class="ngaycheckin" name="nhanphong" placeholder="Ngày check-in"></div>
+            <div class="label-an"><input type="date" class="ngaycheckout" name="traphong" placeholder="Ngày check-out"></div>
+            <div class="label-an"><input type="number" class="songuoi" name="number" placeholder="Số người"></div>
+            <div class="timkiem"><button type="submit" class="btn-timkiem">Tìm Kiếm</button></div>
+        </div>
+    </form>
+
+    <div class="container2">
+        <div class="column1">
+            <img class="adversite" src="/img/image-7.png" alt="Quảng Cáo" title="Khu Vực Quảng Cáo">             
+            </img>
+        </div>
+        <div class="column2">
+            <div id="detailphong">
+                        <div class="img-anhphong">
+                            <img class="image-phong" src="~/img/image-9.png" />
+                        </div>
+                        <div class="thongtin-phong">
+                            <div class="kieuphong"><h5>@Html.DisplayFor(model => model.SKieuPhong)</h5></div>
+                            
+                            <hr style="border-top: 1px solid #000;width:400px">
+                             <p style="font-size:70%">Phòng còn trống: @Html.DisplayFor(model => model.SPhongcontrong)</p>
+                              <div class="tiennghi" style="font-size:80%"><h7>Tiện nghi hiện có: @Html.DisplayFor(model => model.STiennghi)</h7></div>
+                            <div class="mota">
+                                <p style="font-size=70%">Mô tả: @Html.DisplayFor(model => model.SMotaphong)</p>
+                            </div>
+                            <div class="giaphong">
+                                <p style="font-size=70%">Giá phòng: @Html.DisplayFor(model => model.FGiaphong)</p>
+                            </div>
+                            <div class="nut">
+                                
+                                    <button id="btndat" class="btn-datphong">Đặt phòng ngay</button>
+                                
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Lấy tham chiếu tới button
+    var button = document.getElementById('btndat');
+
+    // Thêm sự kiện click
+    button.addEventListener('click', function () {
+        // Hiển thị thông báo khi button được click
+        alert('Đặt phòng thành công!');
+    });
+</script>
