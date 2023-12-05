@@ -1,6 +1,7 @@
 ﻿using HotelBooking.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 
 namespace HotelBooking.Controllers
@@ -174,8 +175,34 @@ namespace HotelBooking.Controllers
         var tblKhachSan = await _context.TblKhachSans.FindAsync(id);
         if (tblKhachSan != null)
         {
-            _context.TblKhachSans.Remove(tblKhachSan);
-        }
+                // Bước 1: Lấy danh sách các phòng có IdKhachsan bằng id
+                var phongs = _context.TblPhongs.Where(p => p.IdKhachsan == id).ToList();
+
+                var danhgias = _context.TblDanhGia.Where(dg => dg.IdKhachsan == id).ToList();
+                // Bước 2: Lấy danh sách các IdPhong từ các phòng có IdKhachsan bằng id
+                var idPhongs = phongs.Select(p => p.IdPhong).ToList();
+
+                // Bước 3: Lấy danh sách các đặt phòng có IdPhong nằm trong danh sách idPhongs
+                var datPhongs = _context.TblDatphongs.Where(dp => idPhongs.Contains((int)dp.IdPhong)).ToList();
+
+                var id_Madatphongs = datPhongs.Select(p => p.IdMadatphong).ToList();
+                // Bước 4: Lấy danh sách các chi tiết đặt phòng có ID_Madatphong nằm trong danh sách idPhongs
+                var chiTietDatPhongs = _context.TblChiTietDatPhongs.Where(ct => id_Madatphongs.Contains((int)ct.IdMadatphong)).ToList();
+
+                _context.TblDanhGia.RemoveRange(danhgias);
+
+                // Bước 5: Xóa các chi tiết đặt phòng
+                _context.TblChiTietDatPhongs.RemoveRange(chiTietDatPhongs);
+
+                // Bước 4: Xóa các đặt phòng
+                _context.TblDatphongs.RemoveRange(datPhongs);
+
+                // Bước 2: Xóa các phòng
+                _context.TblPhongs.RemoveRange(phongs);
+
+                // Bước 1: Xóa khách sạn
+                _context.TblKhachSans.Remove(tblKhachSan);
+            }
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
