@@ -3,6 +3,7 @@ using HotelBooking.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using System.Text;
 
 namespace HotelBooking.Controllers
@@ -17,8 +18,9 @@ namespace HotelBooking.Controllers
             _context = context;
         }
 
-/*        [Route("/Chitietphong")]
-*/        public async Task<IActionResult> Index(int? id)
+        /*        [Route("/Chitietphong")]
+        */
+        public async Task<IActionResult> Index(int? id, string tiennghi,string kieuphong)
         {
             if (HttpContext.Session.TryGetValue("UserId", out var userId) && HttpContext.Session.TryGetValue("UserName", out var userName))
             {
@@ -27,22 +29,56 @@ namespace HotelBooking.Controllers
                 ViewBag.UserId = userIdString;
                 ViewBag.UserName = userNameString;
             }
-            string kieuPhong = HttpContext.Request.Query["kieuphong"];
+            /*
+                        ViewBag.idks = id;
+                        ViewBag.mota = (await _context.TblKhachSans.FirstOrDefaultAsync(m => m.IdKhachsan == id))?.SMotakhachsan;
+                        ViewBag.tenks = (await _context.TblKhachSans.FirstOrDefaultAsync(m => m.IdKhachsan == id))?.STenkhachsan;
+                        tiennghi= HttpContext.Request.Form["tiennghi"];
+                        kieuphong = HttpContext.Request.Form["kieuphong"];
+                        ViewBag.tiennghi = tiennghi;
+                        var query = _context.TblPhongs.Include(h => h.IdKhachsanNavigation).AsQueryable();
+
+                        // Thêm điều kiện lọc cho đánh giá (rating)
+                        if (id.HasValue)
+                        {
+
+                            query = query.Where(t => t.IdKhachsan==id);
+                        }
+
+                        if (!string.IsNullOrEmpty(tiennghi))
+                        {
+
+                            query = query.Where(t=> t.STiennghi.ToLower().Contains(tiennghi));
+                        }
+
+                        // Thêm điều kiện lọc cho địa chỉ (address)
+                        if (!string.IsNullOrEmpty(kieuphong))
+                        {
+                            query = query.Where(t=>t.SKieuPhong.ToLower().Contains(kieuphong));
+                        }
+
+                        var hotelsList = await query.ToListAsync();
+                        return View(hotelsList);*/
+            kieuphong = HttpContext.Request.Query["kieuphong"];
+            tiennghi = HttpContext.Request.Query["tiennghi"];
             ViewBag.idks = id;
             // Gán giá trị vào ViewBag để sử dụng trong view
-            ViewBag.kieu = kieuPhong;
-            ViewBag.mota= (await _context.TblKhachSans.FirstOrDefaultAsync(m => m.IdKhachsan == id))?.SMotakhachsan;
-            var tblPhongs = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t=> t.IdKhachsan==id).ToListAsync();
-            var tblkieu = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t => t.IdKhachsan == id&& t.SKieuPhong==kieuPhong).ToListAsync();
-            if (kieuPhong == null)
+            ViewBag.kieu = kieuphong;
+            ViewBag.tiennghi = tiennghi;
+            ViewBag.mota = (await _context.TblKhachSans.FirstOrDefaultAsync(m => m.IdKhachsan == id))?.SMotakhachsan;
+            ViewBag.tenks = (await _context.TblKhachSans.FirstOrDefaultAsync(m => m.IdKhachsan == id))?.STenkhachsan;
+            var tblPhongs = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation).Where(t => t.IdKhachsan == id).ToListAsync();
+            if (string.IsNullOrEmpty(kieuphong) && string.IsNullOrEmpty(tiennghi))
             {
                 return View(tblPhongs);
             }
             else
             {
-                return View(tblkieu);
+                var tblKieu = await _context.TblPhongs.Include(t => t.IdKhachsanNavigation)
+                                        .Where(t => t.IdKhachsan == id && (string.IsNullOrEmpty(kieuphong) || t.SKieuPhong == kieuphong) && (string.IsNullOrEmpty(tiennghi) || t.STiennghi.ToLower().Contains(tiennghi))).ToListAsync();
+
+                return View(tblKieu);
             }
-            return View(tblPhongs);
         }
         
         public async Task<IActionResult> Details(int? id)

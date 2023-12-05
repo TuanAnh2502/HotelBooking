@@ -9,7 +9,7 @@
 <div class="content">
     <div class="Header_chitiet">
         <span class="name_khachsan">
-            Hà nội Hotel
+            @ViewBag.tenks
         </span>
     </div>
     <div class="Body_chitiet">
@@ -18,52 +18,69 @@
         </div>
         <div class="gioithieu_phong">
             <div class="tiennghi_phong">
-                Wi-Fi, TV, điều hòa nhiệt độ
-            </div>  
+                @foreach (var item in Model.SelectMany(p => p.STiennghi.Split(',').Select(t => t.Trim())).Distinct())
+                {
+                    <div class="tiennghi_item">
+                        @item
+                    </div>
+                }
+            </div>
+
             <span class="mota_phong">
                 @ViewBag.mota
             </span>
         </div>
-        <button class="btn-datphong">Đặt Ngay</button>
     </div>
-    
-        <div class="timkiem">
-            <input type="text" class="timkiem_input" id="timkiem_diachi" name="address" placeholder="Bạn muốn đến đâu" />
-            <input type="date" class="timkiem_input" id="timkiem_date_nhan" name="nhanphong" placeholder="Ngày nhận">
-            <input type="date" class="timkiem_input" id="timkiem_date_tra" name="traphong" placeholder="Ngày tra">
-            <input type="number" class="timkiem_input" id="timkiem_number" name="number" placeholder="Số Người" />
-            <button type="submit">Tìm Kiếm</button>
+    <div class="timkiem">
+            <form asp-controller="TblDatphongs" asp-action="Index">
+                <input type="text" class="timkiem_input" id="timkiem_diachi" name="address" placeholder="Bạn muốn đến đâu" />
+                <input type="date" class="timkiem_input" id="timkiem_date_nhan" name="nhanphong" placeholder="Ngày nhận">
+                <input type="date" class="timkiem_input" id="timkiem_date_tra" name="traphong" placeholder="Ngày tra">
+                <input type="number" class="timkiem_input" id="timkiem_number" name="number" placeholder="Số Người" />
+                <button type="submit" class="btn-timkiem">Tìm Kiếm</button> 
+        </form>
         </div>
 
     <div class="footer_chitiet">
         <div class="column1">
-            <h2>Những thiết yếu cần có</h2>
+            <h2>Lọc dữ liệu</h2>
             <hr style="border-top: 2px solid #000;">
 
-            <div>
-                <p><b>Xếp hạng chỗ nghỉ</b></p>
-                <form method="get" asp-action="Index">
+            <form asp-action="Index" method="get" asp-controller="Chitietphong" >
+            <div class="Kieuphong_filter">
+                <p><b>Kiểu phòng</b></p>
                     <!-- Các ô input cho lọc -->
                     <div class="danhsachfilter">
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Select(i => i.SKieuPhong).Distinct())
                         {
-                            <input type="radio" class="input_loc" name="kieuphong" value="@item.SKieuPhong" @(ViewBag.kieu == item.SKieuPhong ? "checked" : "")>
-                            @item.SKieuPhong
+                            <input type="checkbox" class="input_loc" name="kieuphong" value="@item" >
+                            @item
                             <br />
                         }
                     </div>
-                        <input type="submit" name="loc" id="btn_loc" value="Lọc" />
-                </form>
 
             </div>
+
+            <div class="Tiennghi_filter">
+                <p><b>Kiểu phòng</b></p>
+                    <!-- Các ô input cho lọc -->
+                    <div class="danhsachfilter">
+                        @foreach (var item in Model.SelectMany(p => p.STiennghi.Split(',').Select(t => t.Trim())).Distinct())
+                        {
+                            <input type="checkbox" class="input_loc" name="tiennghi" value="@item" @(ViewBag.tiennghi == item ? "checked" : "")>
+                            @item
+                            <br />
+                        }
+                    </div>
+                </div>
+                <input type="submit" name="loc" id="btn_loc" value="Lọc" />
+            </form>
 
         </div>
         <div class="column2">
             <h2 class="Loc_title">@ViewBag.kieu</h2>
             @foreach (var item in Model)
             {
-                if (item.SKieuPhong == ViewBag.kieu)
-                {
                     <div class="phong_daloc">
                         <div class="phong_content">
 
@@ -72,19 +89,18 @@
                                     <a asp-action="Details" asp-route-id="@item.IdPhong">
                                         <img class="phong_image" src="~/img/image-9.png" />
                                     </a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
-                                </div>
-                                <div class="khachsan_phongloc">
-                                    @Html.DisplayFor(modelItem => item.IdKhachsan)
-                                </div>
+                            </div>
+                            <div class="content_left_phong">
                                 <div class="kieuphong_phongloc">
-                                    @Html.DisplayFor(modelItem => item.SKieuPhong)
+                                    Kiểu phòng: @Html.DisplayFor(modelItem => item.SKieuPhong)
                                 </div>
                                 <div class="tiennghi_phongloc">
-                                    @Html.DisplayFor(modelItem => item.STiennghi)
+                                    Tiện ích: @Html.DisplayFor(modelItem => item.STiennghi)
                                 </div>
                                 <div class="mota_phongloc">
                                     Đánh Giá: @Html.DisplayFor(modelItem => item.SMotaphong)
                                 </div>
+                            </div>
                             </div>
                             <div class="right_content">
                                 <div class="datphong">
@@ -97,44 +113,9 @@
                             </div>
                         </div>
                     </div>
-                }
-                else if (ViewBag.kieu == "")
-                {
-                    <div class="phong_daloc">
-                        <div class="phong_content">
-
-                            <div class="left_content">
-                                <div class="anh">
-                                    <a asp-action="Details" asp-route-id="@item.IdPhong">
-                                        <img class="phong_image" src="~/img/image-9.png" />
-                                    </a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
-                                </div>
-                                <div class="khachsan_phongloc">
-                                    @Html.DisplayFor(modelItem => item.IdKhachsan)
-                                </div>
-                                <div class="kieuphong_phongloc">
-                                    @Html.DisplayFor(modelItem => item.SKieuPhong)
-                                </div>
-                                <div class="tiennghi_phongloc">
-                                    @Html.DisplayFor(modelItem => item.STiennghi)
-                                </div>
-                                <div class="mota_phongloc">
-                                    Đánh Giá: @Html.DisplayFor(modelItem => item.SMotaphong)
-                                </div>
-                            </div>
-                            <div class="right_content">
-                                <div class="datphong">
-                                    <a asp-action="Details" asp-route-id="@item.IdPhong"><button type="button">Đặt phòng ngay</button></a>
-                                </div>
-
-                                <div class="giaphong_phongloc">
-                                    @Html.DisplayFor(modelItem => item.FGiaphong)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                
             }
         </div>
 
+  </div>
   </div>

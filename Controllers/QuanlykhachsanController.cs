@@ -98,8 +98,15 @@ namespace HotelBooking.Controllers
 
     // GET: TblKhachSans/Edit/5
     public async Task<IActionResult> Edit(int? id)
-    {
-        if (id == null)
+        {
+            if (HttpContext.Session.TryGetValue("UserId", out var userId) && HttpContext.Session.TryGetValue("UserName", out var userName))
+            {
+                var userIdString = HttpContext.Session.GetInt32("UserId");
+                var userNameString = Encoding.UTF8.GetString(userName);
+                ViewBag.UserId = userIdString;
+                ViewBag.UserName = userNameString;
+            }
+            if (id == null)
         {
             return NotFound();
         }

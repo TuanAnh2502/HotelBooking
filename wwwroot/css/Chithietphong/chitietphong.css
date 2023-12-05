@@ -21,3 +21,100 @@
     background-color: #fff;
 }
 
+/* Chithietphong.css */
+
+/* Thiết kế cho phần Header_chitiet */
+.Header_chitiet {
+    background-color: #333; /* Màu nền đen */
+    font-size:26px;
+    color: #fff; /* Màu chữ trắng */
+    padding: 10px; /* Khoảng cách giữa nội dung và mép của phần header */
+    text-align: center; /* Căn giữa nội dung */
+}
+
+/* Thiết kế cho phần Body_chitiet */
+.Body_chitiet {
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 20px; /* Khoảng cách giữa nội dung và mép của phần body */
+}
+
+/* Thiết kế cho phần Imgreview_phong */
+.Imgreview_phong img {
+    max-width: 100%; /* Ảnh sẽ không vượt quá kích thước của phần tử cha */
+    width:100%;
+    height: auto; /* Tự động tính chiều cao để giữ tỷ lệ khung hình */
+}
+
+/* Thiết kế cho phần gioithieu_phong */
+.gioithieu_phong {
+    margin-left: 20px; /* Khoảng cách từ gioithieu_phong đến Imgreview_phong */
+}
+
+/* Thiết kế cho phần tiennghi_phong */
+.tiennghi_phong {
+    font-size: 16px; /* Kích thước chữ */
+    display:flex;
+}
+.tiennghi_item {
+    display: inline-block;
+    background-color: #afff5f;
+    color: #fff;
+    width: 80px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+    /* Thiết kế cho phần mota_phong */
+}
+    .mota_phong {
+    display: block; /* Hiển thị như là một đối tượng block */
+    margin-top: 10px; /* Khoảng cách từ tiennghi_phong đến mota_phong */
+}
+.timkiem form{
+    top: 5px;
+    width: auto;
+    margin: 15px;
+    position: relative;
+    height: 40px;
+    display: flex;
+    justify-content:center;
+}
+.timkiem form input{
+    margin:0 10px;
+}
+
+.btn-timkiem {
+    border-radius: 10px;
+    font-weight: normal;
+    height: 40px;
+    width: 100px;
+    margin: 5px;
+}
+
+    btn-timkiem:active, .btn-timkiem:hover {
+        font-weight: bold;
+    }
+.phong_daloc{
+    margin-bottom:20px
+}
+.kieuphong_phongloc{
+    font-size:18px;
+    font-weight:bold;
+}
+.phong_content {
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.content_left_phong {
+    margin: 0 10px;
+}
+.right_content{
+    text-align:center;
+}
+.phong_content, .left_content {
+    display: flex;
+    justify-content:space-between;
+}
+.phong_image{
+    margin-left:10px;
+}
