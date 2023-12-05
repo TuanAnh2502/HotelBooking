@@ -91,8 +91,8 @@
 
 .img-anhphong {
     flex: 35%;
-    width: 300px;
-    height: 200px;
+    width: 500px;
+    height: auto;
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 10px;
